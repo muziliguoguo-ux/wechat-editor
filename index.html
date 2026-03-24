@@ -4367,6 +4367,68 @@
       box-shadow: none;
     }
 
+    .theme-rack-home {
+      padding: 20px 24px;
+    }
+
+    .workspace-main.workspace-home {
+      grid-template-columns: 248px minmax(0, 1fr) 392px;
+      align-items: start;
+    }
+
+    .controls-panel-home,
+    .editor-panel-home,
+    .preview-panel-home {
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .controls-panel-home {
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .controls-panel-head {
+      display: grid;
+      gap: 4px;
+    }
+
+    .controls-panel-head h2 {
+      margin: 0;
+      font-size: 22px;
+      font-family: "Space Grotesk", "Manrope", sans-serif;
+      letter-spacing: -0.03em;
+      color: #1f2632;
+    }
+
+    .controls-side-rail {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 0;
+    }
+
+    .controls-side-rail .control-item {
+      padding: 12px 12px 13px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 248, 255, 0.82));
+    }
+
+    .controls-side-rail .control-item label {
+      font-size: 12px;
+    }
+
+    .controls-side-rail .toggle-field span {
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .editor-panel-home,
+    .preview-panel-home {
+      min-width: 0;
+    }
+
     @media (max-width: 980px) {
       .workspace-main.workspace-home {
         grid-template-columns: 1fr;
@@ -4378,6 +4440,14 @@
 
       .home-hero h1 {
         font-size: clamp(38px, 10vw, 58px);
+      }
+
+      .theme-rack-home {
+        padding: 18px;
+      }
+
+      .controls-panel-home {
+        grid-column: auto;
       }
 
       .preview-panel-home {
@@ -4401,6 +4471,7 @@
         padding: 18px 10px 104px;
       }
 
+      .controls-side-rail,
       .controls-editor {
         grid-template-columns: 1fr;
       }
@@ -4419,6 +4490,13 @@
       .topnav a {
         flex: 1 1 calc(33.33% - 8px);
         min-width: 0;
+      }
+
+      .controls-panel-home,
+      .editor-panel-home,
+      .preview-panel-home,
+      .theme-rack-home {
+        padding: 18px;
       }
 
       .panel-actions,
@@ -4474,7 +4552,92 @@
       </div>
     </section>
 
+    <section id="themeSection" class="panel theme-rack theme-rack-home scroll-reveal" data-nav-section>
+      <div class="theme-rack-head">
+        <div>
+          <span class="theme-rack-label">风格主题</span>
+          <p class="theme-rack-sub">15 套主题横向切换，直接决定整篇文章的阅读气质。</p>
+        </div>
+        <div class="theme-rack-actions">
+          <span id="themeSummary" class="theme-count">15 套主题</span>
+          <button id="randomThemeBtn" class="mini-btn" type="button">随机风格</button>
+        </div>
+      </div>
+      <div id="themeList" class="theme-list theme-list-top" aria-label="风格主题"></div>
+    </section>
+
     <main class="workspace workspace-main workspace-home scroll-reveal">
+      <aside class="panel controls-panel-home">
+        <div class="controls-panel-head">
+          <div>
+            <h2>排版控制</h2>
+            <p class="section-sub">把节奏控制放在最左侧，随时调整，不打断编辑。</p>
+          </div>
+        </div>
+
+        <div class="controls controls-side-rail">
+          <div class="control-item">
+            <label for="fontSizeRange">正文字号</label>
+            <div class="control-main">
+              <input id="fontSizeRange" type="range" min="14" max="20" value="16">
+              <output id="fontSizeValue">16px</output>
+            </div>
+          </div>
+          <div class="control-item">
+            <label for="letterSpaceRange">字间距</label>
+            <div class="control-main">
+              <input id="letterSpaceRange" type="range" min="0" max="1.2" value="0.12" step="0.02">
+              <output id="letterSpaceValue">0.12px</output>
+            </div>
+          </div>
+          <div class="control-item">
+            <label for="lineHeightRange">行高</label>
+            <div class="control-main">
+              <input id="lineHeightRange" type="range" min="1.5" max="2.1" value="1.86" step="0.02">
+              <output id="lineHeightValue">1.86</output>
+            </div>
+          </div>
+          <div class="control-item">
+            <label for="spacingRange">段间距</label>
+            <div class="control-main">
+              <input id="spacingRange" type="range" min="12" max="28" value="18">
+              <output id="spacingValue">18px</output>
+            </div>
+          </div>
+          <div class="control-item">
+            <label for="headingGapRange">标题模块间距</label>
+            <div class="control-main">
+              <input id="headingGapRange" type="range" min="20" max="48" value="28" step="1">
+              <output id="headingGapValue">28px</output>
+            </div>
+          </div>
+          <div class="control-item">
+            <label for="widthRange">内容宽度</label>
+            <div class="control-main">
+              <input id="widthRange" type="range" min="520" max="760" value="660" step="10">
+              <output id="widthValue">660px</output>
+            </div>
+          </div>
+          <select id="markerStyleSelect" hidden aria-hidden="true" tabindex="-1">
+            <option value="none" selected>无编号</option>
+          </select>
+          <div class="control-item">
+            <label for="autoEmphasisToggle">自动标重点</label>
+            <div class="toggle-field">
+              <input id="autoEmphasisToggle" class="toggle" type="checkbox">
+              <span>实验功能，按段落自动加重点底色。</span>
+            </div>
+          </div>
+          <div class="control-item">
+            <label for="flatModeToggle">去稿纸底色</label>
+            <div class="toggle-field">
+              <input id="flatModeToggle" class="toggle" type="checkbox">
+              <span>只去掉整篇稿纸的底色或纹理，保留模块本身样式。</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
       <section id="editorSection" class="panel editor-panel editor-panel-home" data-nav-section>
         <div class="panel-head editor-panel-head">
           <div class="panel-heading">
@@ -4486,90 +4649,6 @@
             <span id="wordCount">0 字</span>
             <button id="clearBtn" class="mini-btn" type="button">清空</button>
             <button id="copyHtmlBtn" class="mini-btn" type="button">复制 HTML</button>
-          </div>
-        </div>
-
-        <section id="themeSection" class="theme-rack">
-          <div class="theme-rack-head">
-            <div>
-              <span class="theme-rack-label">风格主题</span>
-              <p class="theme-rack-sub">不是换色，是切整篇文章的阅读气质。</p>
-            </div>
-            <div class="theme-rack-actions">
-              <span id="themeSummary" class="theme-count">15 套主题</span>
-              <button id="randomThemeBtn" class="mini-btn" type="button">随机风格</button>
-            </div>
-          </div>
-          <div id="themeList" class="theme-list theme-list-top" aria-label="风格主题"></div>
-        </section>
-
-        <div class="editor-controls-card editor-controls-card-home">
-          <div class="section-head editor-controls-head">
-            <div>
-              <h2>排版控制</h2>
-              <p class="section-sub">字距、行距、段距和稿纸宽度集中调节。</p>
-            </div>
-          </div>
-          <div class="controls controls-editor">
-            <div class="control-item">
-              <label for="fontSizeRange">正文字号</label>
-              <div class="control-main">
-                <input id="fontSizeRange" type="range" min="14" max="20" value="16">
-                <output id="fontSizeValue">16px</output>
-              </div>
-            </div>
-            <div class="control-item">
-              <label for="letterSpaceRange">字间距</label>
-              <div class="control-main">
-                <input id="letterSpaceRange" type="range" min="0" max="1.2" value="0.12" step="0.02">
-                <output id="letterSpaceValue">0.12px</output>
-              </div>
-            </div>
-            <div class="control-item">
-              <label for="lineHeightRange">行高</label>
-              <div class="control-main">
-                <input id="lineHeightRange" type="range" min="1.5" max="2.1" value="1.86" step="0.02">
-                <output id="lineHeightValue">1.86</output>
-              </div>
-            </div>
-            <div class="control-item">
-              <label for="spacingRange">段间距</label>
-              <div class="control-main">
-                <input id="spacingRange" type="range" min="12" max="28" value="18">
-                <output id="spacingValue">18px</output>
-              </div>
-            </div>
-            <div class="control-item">
-              <label for="headingGapRange">标题模块间距</label>
-              <div class="control-main">
-                <input id="headingGapRange" type="range" min="20" max="48" value="28" step="1">
-                <output id="headingGapValue">28px</output>
-              </div>
-            </div>
-            <div class="control-item">
-              <label for="widthRange">内容宽度</label>
-              <div class="control-main">
-                <input id="widthRange" type="range" min="520" max="760" value="660" step="10">
-                <output id="widthValue">660px</output>
-              </div>
-            </div>
-            <select id="markerStyleSelect" hidden aria-hidden="true" tabindex="-1">
-              <option value="none" selected>无编号</option>
-            </select>
-            <div class="control-item">
-              <label for="autoEmphasisToggle">自动标重点</label>
-              <div class="toggle-field">
-                <input id="autoEmphasisToggle" class="toggle" type="checkbox">
-                <span>实验功能，按段落自动加重点底色。</span>
-              </div>
-            </div>
-            <div class="control-item">
-              <label for="flatModeToggle">去稿纸底色</label>
-              <div class="toggle-field">
-                <input id="flatModeToggle" class="toggle" type="checkbox">
-                <span>只去掉整篇稿纸的底色或纹理，保留模块本身样式。</span>
-              </div>
-            </div>
           </div>
         </div>
 
