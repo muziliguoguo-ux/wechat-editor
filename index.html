@@ -3190,6 +3190,11 @@
     .topnav {
       min-width: min(100%, 380px);
       gap: 10px;
+      padding: 6px;
+      border-radius: 999px;
+      background: rgba(245, 247, 252, 0.96);
+      border: 1px solid rgba(20, 28, 45, 0.06);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
     }
 
     .topnav a,
@@ -3197,6 +3202,7 @@
       min-width: 108px;
       color: #465266;
       font-weight: 700;
+      padding: 10px 14px;
     }
 
     .topnav a:hover,
@@ -3204,7 +3210,8 @@
     .mobile-drawer a:hover,
     .mobile-drawer a.active {
       color: #2c4ef2;
-      background: rgba(45, 98, 255, 0.08);
+      background: #ffffff;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
     }
 
     .shell-app {
@@ -3317,6 +3324,24 @@
       line-height: 1.75;
     }
 
+    .studio-note-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: -6px;
+    }
+
+    .studio-note-grid span {
+      padding: 9px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(20, 28, 45, 0.06);
+      background: rgba(250, 251, 254, 0.9);
+      color: #5e6a7d;
+      font-size: 11px;
+      line-height: 1.45;
+      text-align: center;
+    }
+
     .section-head,
     .panel-head {
       margin-bottom: 0;
@@ -3352,17 +3377,74 @@
 
     .theme-card {
       aspect-ratio: auto;
-      min-height: 108px;
+      min-height: 124px;
       padding: 8px;
       border-radius: 22px;
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(246, 249, 255, 0.92));
       box-shadow: 0 12px 26px rgba(31, 41, 55, 0.05);
+      border: 1px solid rgba(20, 28, 45, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .theme-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 28px rgba(31, 41, 55, 0.08);
     }
 
     .theme-preview {
-      height: 90px;
+      position: relative;
+      height: 102px;
       border-radius: 18px;
       padding: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    .theme-preview::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.42;
+      pointer-events: none;
+    }
+
+    .theme-card[data-layout="editorial"] .theme-preview::before,
+    .theme-card[data-layout="dossier"] .theme-preview::before {
+      background-image: linear-gradient(rgba(43, 51, 67, 0.08) 1px, transparent 1px);
+      background-size: 100% 10px;
+    }
+
+    .theme-card[data-layout="notebook"] .theme-preview::before {
+      background-image:
+        linear-gradient(90deg, rgba(43, 51, 67, 0.08) 1px, transparent 1px),
+        linear-gradient(rgba(43, 51, 67, 0.05) 1px, transparent 1px);
+      background-size: 12px 100%, 100% 12px;
+    }
+
+    .theme-card[data-layout="tech"] .theme-preview::before {
+      background-image:
+        linear-gradient(90deg, rgba(43, 51, 67, 0.09) 1px, transparent 1px),
+        linear-gradient(rgba(43, 51, 67, 0.09) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    .theme-card[data-layout="poster"] .theme-preview::before {
+      background:
+        radial-gradient(circle at 15% 18%, rgba(255, 255, 255, 0.55), transparent 24%),
+        linear-gradient(120deg, transparent 0%, transparent 42%, rgba(255, 255, 255, 0.45) 58%, transparent 72%);
+    }
+
+    .theme-card[data-layout="palace"] .theme-preview::before {
+      background:
+        linear-gradient(90deg, rgba(43, 51, 67, 0.07) 0 1px, transparent 1px 100%),
+        linear-gradient(rgba(43, 51, 67, 0.07) 0 1px, transparent 1px 100%);
+      background-size: 22px 22px;
+      opacity: 0.25;
+    }
+
+    .theme-card[data-layout="minimal"] .theme-preview::before {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.15));
+      opacity: 0.55;
     }
 
     .theme-layout-badge {
@@ -3377,7 +3459,9 @@
       gap: 3px;
       padding: 9px 10px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.76);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
     }
 
     .theme-preview-copy strong {
@@ -3392,6 +3476,58 @@
 
     .theme-card .theme-font {
       display: none;
+    }
+
+    .theme-card.active .theme-preview-copy {
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .theme-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 2px 4px 0;
+    }
+
+    .theme-card-meta-text {
+      min-width: 0;
+      display: grid;
+      gap: 2px;
+    }
+
+    .theme-card-meta-text strong {
+      font-size: 11px;
+      line-height: 1.2;
+      color: #4d596d;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .theme-card-meta-text span {
+      font-size: 10px;
+      line-height: 1.25;
+      color: #78859a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .theme-swatches {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .theme-swatches i {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--dot);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.08);
     }
 
     .sidebar-controls {
@@ -3423,10 +3559,67 @@
     }
 
     .editor-toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      display: grid;
+      gap: 10px;
       margin-top: -2px;
+    }
+
+    .editor-meta-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(20, 28, 45, 0.06);
+      background: linear-gradient(180deg, rgba(248, 250, 255, 0.94), rgba(244, 247, 252, 0.9));
+    }
+
+    .editor-meta-kicker {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #475469;
+    }
+
+    .editor-meta-tags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .editor-meta-tags span {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(20, 28, 45, 0.06);
+      color: #667387;
+      font-size: 11px;
+      line-height: 1.2;
+    }
+
+    .toolbar-group {
+      display: grid;
+      gap: 8px;
+      padding: 12px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(20, 28, 45, 0.06);
+      background: rgba(250, 251, 254, 0.9);
+    }
+
+    .toolbar-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #556173;
+    }
+
+    .toolbar-actions {
+      gap: 8px;
     }
 
     .field-label {
@@ -3466,6 +3659,19 @@
       gap: 8px;
     }
 
+    .preview-mode-badge {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(245, 247, 252, 0.96);
+      border: 1px solid rgba(20, 28, 45, 0.06);
+      color: #4a5568;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     .preview-actions #activeThemeName {
       max-width: none;
       text-align: right;
@@ -3495,10 +3701,16 @@
       max-height: 760px;
       transform: translateY(16px);
       border-radius: 36px;
+      background:
+        linear-gradient(180deg, #171a21, #07090d);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 36px 72px rgba(15, 23, 42, 0.22);
     }
 
     .phone-screen {
       border-radius: 30px;
+      background: #f7f7fa;
     }
 
     .phone-status {
@@ -3520,6 +3732,20 @@
 
     .preview-stage .article {
       padding: 24px 16px 60px;
+    }
+
+    .phone-screen::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(17, 24, 39, 0.18);
+      z-index: 3;
+      pointer-events: none;
     }
 
     .floating-rail {
@@ -3617,6 +3843,10 @@
         justify-items: stretch;
       }
 
+      .preview-mode-badge {
+        justify-self: start;
+      }
+
       .preview-actions #activeThemeName {
         text-align: left;
       }
@@ -3639,6 +3869,15 @@
     @media (max-width: 520px) {
       .theme-list {
         grid-template-columns: 1fr;
+      }
+
+      .studio-note-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .editor-meta-strip {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .phone-shell {
@@ -3685,6 +3924,11 @@
         </div>
 
         <p class="studio-note">支持飞书、Notion、Word、Markdown 直接导入，整理后可一键复制到公众号后台。</p>
+        <div class="studio-note-grid" aria-hidden="true">
+          <span>飞书 / Notion / Word</span>
+          <span>Markdown / 图片 / MD</span>
+          <span>复制到公众号后台</span>
+        </div>
 
         <div class="section-head">
           <div>
@@ -3783,16 +4027,35 @@
           </div>
         </div>
 
-        <div class="editor-toolbar snippet-row">
-          <button class="chip-btn" type="button" data-snippet="h2">插入小节</button>
-          <button class="chip-btn" type="button" data-snippet="quote">插入引用</button>
-          <button class="chip-btn" type="button" data-snippet="list">插入列表</button>
-          <button class="chip-btn" type="button" data-snippet="tip">插入提示块</button>
-          <button class="chip-btn" type="button" data-snippet="table">插入表格</button>
-          <button class="chip-btn" type="button" data-snippet="divider">插入分割线</button>
-          <button id="uploadMdBtn" class="chip-btn" type="button">导入 MD 文件</button>
-          <button id="insertImageUrlBtn" class="chip-btn" type="button">插入图片 URL</button>
-          <button id="uploadImageBtn" class="chip-btn" type="button">上传本地图片</button>
+        <div class="editor-meta-strip">
+          <span class="editor-meta-kicker">结构化排版台</span>
+          <div class="editor-meta-tags" aria-hidden="true">
+            <span>飞书直贴</span>
+            <span>Word 转 Markdown</span>
+            <span>手机阅读预览</span>
+          </div>
+        </div>
+
+        <div class="editor-toolbar">
+          <div class="toolbar-group">
+            <span class="toolbar-label">结构模块</span>
+            <div class="toolbar-actions snippet-row">
+              <button class="chip-btn" type="button" data-snippet="h2">插入小节</button>
+              <button class="chip-btn" type="button" data-snippet="quote">插入引用</button>
+              <button class="chip-btn" type="button" data-snippet="list">插入列表</button>
+              <button class="chip-btn" type="button" data-snippet="tip">插入提示块</button>
+              <button class="chip-btn" type="button" data-snippet="table">插入表格</button>
+              <button class="chip-btn" type="button" data-snippet="divider">插入分割线</button>
+            </div>
+          </div>
+          <div class="toolbar-group">
+            <span class="toolbar-label">导入与插图</span>
+            <div class="toolbar-actions snippet-row">
+              <button id="uploadMdBtn" class="chip-btn" type="button">导入 MD 文件</button>
+              <button id="insertImageUrlBtn" class="chip-btn" type="button">插入图片 URL</button>
+              <button id="uploadImageBtn" class="chip-btn" type="button">上传本地图片</button>
+            </div>
+          </div>
         </div>
 
         <label class="field-label" for="mdInput">正文内容</label>
@@ -3814,6 +4077,7 @@
             <span class="panel-sub">模拟微信阅读页的视觉和滚动效果。</span>
           </div>
           <div class="panel-actions preview-actions">
+            <span class="preview-mode-badge">微信阅读视图</span>
             <span id="activeThemeName">-</span>
             <button id="copyRichBtn" class="btn btn-dark" type="button">复制到公众号</button>
           </div>
@@ -5247,6 +5511,7 @@
           card.type = "button";
           card.className = "theme-card";
           card.dataset.themeId = theme.id;
+          card.dataset.layout = theme.layout || "editorial";
           card.innerHTML =
             '<div class="theme-preview" style="--c1:' +
             theme.swatch[0] +
@@ -5269,14 +5534,23 @@
             "</span>" +
             "</div>" +
             "</div>" +
-            '<span class="theme-layout">' +
+            '<div class="theme-card-meta">' +
+            '<div class="theme-card-meta-text">' +
+            "<strong>" +
             escapeHtml(LAYOUT_LABELS[theme.layout] || theme.layout || "Editorial") +
-            "</span>" +
-            '<span class="theme-font">题 ' +
+            "</strong>" +
+            "<span>题 " +
             escapeHtml(theme.headingLabel) +
             " · 文 " +
             escapeHtml(theme.bodyLabel) +
-            "</span>";
+            "</span>" +
+            "</div>" +
+            '<span class="theme-swatches" aria-hidden="true">' +
+            '<i style="--dot:' + theme.swatch[0] + ';"></i>' +
+            '<i style="--dot:' + theme.swatch[1] + ';"></i>' +
+            '<i style="--dot:' + theme.swatch[2] + ';"></i>' +
+            "</span>" +
+            "</div>";
           card.addEventListener("click", function () {
             setTheme(theme.id, true);
           });
