@@ -3963,7 +3963,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
       gap: 18px;
-      align-items: start;
+      align-items: stretch;
     }
 
     .editor-panel-home,
@@ -3972,6 +3972,7 @@
       display: grid;
       gap: 16px;
       align-content: start;
+      min-height: 100%;
     }
 
     .panel-head {
@@ -4270,10 +4271,6 @@
       line-height: 1.7;
     }
 
-    .preview-panel-home {
-      position: static;
-    }
-
     .preview-actions {
       display: inline-flex;
       align-items: center;
@@ -4300,11 +4297,44 @@
       box-shadow: 0 14px 26px rgba(23, 25, 31, 0.18);
     }
 
+    .preview-copy-btn {
+      position: relative;
+      width: 42px;
+      min-width: 42px;
+      height: 42px;
+      padding: 0;
+      border-radius: 14px;
+      font-size: 0;
+      line-height: 0;
+    }
+
+    .preview-copy-btn::before,
+    .preview-copy-btn::after {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 13px;
+      border: 1.8px solid rgba(255, 255, 255, 0.96);
+      border-radius: 4px;
+      background: transparent;
+    }
+
+    .preview-copy-btn::before {
+      top: 12px;
+      left: 17px;
+    }
+
+    .preview-copy-btn::after {
+      top: 16px;
+      left: 13px;
+    }
+
     .phone-preview-wrap {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      min-height: 720px;
+      align-items: flex-end;
+      min-height: 0;
+      height: 100%;
       padding-top: 6px;
       overflow: hidden;
       background: transparent;
@@ -4427,6 +4457,25 @@
     .editor-panel-home,
     .preview-panel-home {
       min-width: 0;
+    }
+
+    .preview-panel-home {
+      position: static;
+      grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .preview-panel-head {
+      align-items: center;
+    }
+
+    .preview-panel-head .panel-heading {
+      display: flex;
+      align-items: center;
+    }
+
+    .preview-panel-head .panel-sub,
+    #activeThemeName {
+      display: none;
     }
 
     @media (max-width: 980px) {
@@ -4687,12 +4736,10 @@
         <div class="panel-head preview-panel-head">
           <div class="panel-heading">
             <h2>手机预览</h2>
-            <span class="panel-sub">模拟微信阅读页的视觉和滚动效果。</span>
           </div>
           <div class="panel-actions preview-actions">
             <span class="preview-mode-badge">微信阅读视图</span>
-            <span id="activeThemeName">-</span>
-            <button id="copyRichBtn" class="btn btn-dark" type="button">复制到公众号</button>
+            <button id="copyRichBtn" class="btn btn-dark preview-copy-btn" type="button" aria-label="复制到公众号"></button>
           </div>
         </div>
 
@@ -6222,7 +6269,9 @@
         elements.previewStage.dataset.themeId = activeTheme.id;
         elements.phoneShell.dataset.layout = activeTheme.layout || "editorial";
         elements.phoneShell.dataset.themeId = activeTheme.id;
-        elements.activeThemeName.textContent = activeTheme.name + " · " + activeTheme.desc;
+        if (elements.activeThemeName) {
+          elements.activeThemeName.textContent = activeTheme.name + " · " + activeTheme.desc;
+        }
 
         const cards = elements.themeList.querySelectorAll(".theme-card");
         cards.forEach(function (card) {
