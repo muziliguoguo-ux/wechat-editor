@@ -3217,16 +3217,18 @@
     .shell-app {
       max-width: 1500px;
       padding: 22px 18px 36px;
+      display: grid;
+      gap: 18px;
     }
 
-    .workspace-app {
+    .workspace-main {
       display: grid;
-      grid-template-columns: 320px minmax(0, 1fr) 430px;
+      grid-template-columns: minmax(0, 1fr) 430px;
       gap: 18px;
       align-items: start;
     }
 
-    .workspace-app > .panel {
+    .workspace-main > .panel {
       min-height: calc(100vh - 128px);
     }
 
@@ -3239,18 +3241,15 @@
       -webkit-backdrop-filter: blur(10px);
     }
 
-    .studio-sidebar,
+    .theme-panel-top,
     .editor-panel,
     .preview-panel {
       padding: 18px;
     }
 
-    .studio-sidebar,
+    .theme-panel-top,
     .preview-panel {
-      position: sticky;
-      top: 104px;
-      max-height: calc(100vh - 128px);
-      overflow: auto;
+      overflow: hidden;
     }
 
     .editor-panel {
@@ -3259,17 +3258,29 @@
       align-content: start;
     }
 
-    .studio-sidebar {
+    .theme-panel-top {
       display: grid;
-      gap: 16px;
+      gap: 14px;
       align-content: start;
     }
 
-    .studio-sidebar-head {
-      display: flex;
+    .theme-strip-head {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
       align-items: center;
-      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .theme-strip-copy {
+      display: grid;
+      gap: 10px;
+    }
+
+    .theme-strip-actions {
+      display: grid;
       gap: 12px;
+      justify-items: end;
+      text-align: right;
     }
 
     .studio-branding {
@@ -3325,21 +3336,21 @@
     }
 
     .studio-note-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
       gap: 8px;
-      margin-top: -6px;
+      margin-top: -2px;
     }
 
     .studio-note-grid span {
-      padding: 9px 10px;
-      border-radius: 14px;
+      padding: 7px 10px;
+      border-radius: 999px;
       border: 1px solid rgba(20, 28, 45, 0.06);
       background: rgba(250, 251, 254, 0.9);
       color: #5e6a7d;
       font-size: 11px;
-      line-height: 1.45;
-      text-align: center;
+      line-height: 1.2;
     }
 
     .section-head,
@@ -3370,9 +3381,20 @@
     }
 
     .theme-list {
+      display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
       margin-top: 14px;
+    }
+
+    .theme-list-top {
+      display: flex;
+      align-items: stretch;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 6px;
+      margin-top: 0;
+      scrollbar-width: thin;
     }
 
     .theme-card {
@@ -3384,6 +3406,12 @@
       box-shadow: 0 12px 26px rgba(31, 41, 55, 0.05);
       border: 1px solid rgba(20, 28, 45, 0.06);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .theme-list-top .theme-card {
+      flex: 0 0 144px;
+      min-width: 144px;
+      min-height: 118px;
     }
 
     .theme-card:hover {
@@ -3530,20 +3558,15 @@
       box-shadow: 0 2px 4px rgba(15, 23, 42, 0.08);
     }
 
-    .sidebar-controls {
-      margin-top: 18px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(20, 28, 45, 0.08);
-    }
-
-    .sidebar-section-head {
-      margin-bottom: 10px;
-    }
-
     .controls {
       grid-template-columns: 1fr;
       gap: 10px;
       margin-top: 0;
+    }
+
+    .controls-editor {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
     }
 
     .control-item {
@@ -3562,6 +3585,19 @@
       display: grid;
       gap: 10px;
       margin-top: -2px;
+    }
+
+    .editor-controls-card {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 22px;
+      border: 1px solid rgba(20, 28, 45, 0.06);
+      background: linear-gradient(180deg, rgba(248, 250, 255, 0.96), rgba(244, 247, 252, 0.9));
+    }
+
+    .editor-controls-head {
+      margin-bottom: 0;
     }
 
     .editor-meta-strip {
@@ -3651,6 +3687,10 @@
       display: grid;
       gap: 14px;
       align-content: start;
+      position: sticky;
+      top: 104px;
+      max-height: calc(100vh - 128px);
+      overflow: auto;
     }
 
     .preview-actions {
@@ -3757,21 +3797,23 @@
     }
 
     @media (max-width: 1380px) {
-      .workspace-app {
-        grid-template-columns: 296px minmax(0, 1fr) 392px;
+      .workspace-main {
+        grid-template-columns: minmax(0, 1fr) 392px;
       }
     }
 
     @media (max-width: 1180px) {
-      .workspace-app {
+      .workspace-main {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       }
 
-      .studio-sidebar {
-        grid-column: 1 / -1;
-        position: static;
-        max-height: none;
-        overflow: visible;
+      .theme-strip-head {
+        grid-template-columns: 1fr;
+      }
+
+      .theme-strip-actions {
+        justify-items: start;
+        text-align: left;
       }
 
       .preview-panel {
@@ -3780,7 +3822,7 @@
         overflow: visible;
       }
 
-      .controls {
+      .controls-editor {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -3790,12 +3832,12 @@
     }
 
     @media (max-width: 900px) {
-      .workspace-app {
+      .workspace-main {
         grid-template-columns: 1fr;
       }
 
-      .workspace-app > .panel,
-      .studio-sidebar,
+      .workspace-main > .panel,
+      .theme-panel-top,
       .preview-panel {
         min-height: 0;
         position: static;
@@ -3806,7 +3848,7 @@
         min-height: 460px;
       }
 
-      .controls {
+      .controls-editor {
         grid-template-columns: 1fr;
       }
 
@@ -3826,7 +3868,7 @@
         padding: 16px 10px 92px;
       }
 
-      .workspace-app {
+      .workspace-main {
         gap: 14px;
       }
 
@@ -3867,12 +3909,8 @@
     }
 
     @media (max-width: 520px) {
-      .theme-list {
-        grid-template-columns: 1fr;
-      }
-
       .studio-note-grid {
-        grid-template-columns: 1fr;
+        gap: 6px;
       }
 
       .editor-meta-strip {
@@ -3910,9 +3948,9 @@
   </header>
 
   <div class="shell shell-app">
-    <main id="heroSection" class="workspace workspace-app scroll-reveal" data-nav-section>
-      <section id="themeSection" class="panel theme-panel studio-sidebar" data-nav-section>
-        <div class="studio-sidebar-head">
+    <section id="themeSection" class="panel theme-panel theme-panel-top scroll-reveal" data-nav-section>
+      <div class="theme-strip-head">
+        <div class="theme-strip-copy">
           <div class="studio-branding">
             <span class="studio-mark">W</span>
             <div class="studio-brand-copy">
@@ -3920,37 +3958,59 @@
               <span>高级公众号排版器</span>
             </div>
           </div>
-          <a class="mini-btn" href="./operation.html">操作说明</a>
+          <p class="studio-note">支持飞书、Notion、Word、Markdown 直接导入，整理后可一键复制到公众号后台。</p>
+          <div class="studio-note-grid" aria-hidden="true">
+            <span>飞书 / Notion / Word</span>
+            <span>Markdown / 图片 / MD</span>
+            <span>复制到公众号后台</span>
+          </div>
         </div>
-
-        <p class="studio-note">支持飞书、Notion、Word、Markdown 直接导入，整理后可一键复制到公众号后台。</p>
-        <div class="studio-note-grid" aria-hidden="true">
-          <span>飞书 / Notion / Word</span>
-          <span>Markdown / 图片 / MD</span>
-          <span>复制到公众号后台</span>
-        </div>
-
-        <div class="section-head">
+        <div class="theme-strip-actions">
           <div>
             <h2>风格主题</h2>
-            <p class="section-sub">主题不是换颜色，而是不同的阅读气质。</p>
+            <p class="section-sub">把主题放在顶部，只保留切换和预览，不再占一整列。</p>
           </div>
           <div class="section-tools">
             <p id="themeSummary">15 套主题</p>
             <button id="randomThemeBtn" class="mini-btn" type="button">随机风格</button>
+            <a class="mini-btn" href="./operation.html">操作说明</a>
           </div>
         </div>
-        <div id="themeList" class="theme-list" aria-label="风格主题"></div>
+      </div>
+      <div id="themeList" class="theme-list theme-list-top" aria-label="风格主题"></div>
+    </section>
 
-        <div class="sidebar-controls">
-          <div class="section-head sidebar-section-head">
+    <main id="heroSection" class="workspace workspace-main scroll-reveal" data-nav-section>
+      <section id="editorSection" class="panel editor-panel" data-nav-section>
+        <div class="panel-head">
+          <div class="panel-heading">
+            <h2>Markdown 编辑器</h2>
+            <span class="panel-sub">支持富文本直贴转 Markdown，也支持插图与 MD 文件导入。</span>
+          </div>
+          <div class="panel-actions">
+            <button id="loadSampleBtn" class="mini-btn" type="button">示例</button>
+            <span id="wordCount">0 字</span>
+            <button id="clearBtn" class="mini-btn" type="button">清空</button>
+          </div>
+        </div>
+
+        <div class="editor-meta-strip">
+          <span class="editor-meta-kicker">结构化排版台</span>
+          <div class="editor-meta-tags" aria-hidden="true">
+            <span>飞书直贴</span>
+            <span>Word 转 Markdown</span>
+            <span>手机阅读预览</span>
+          </div>
+        </div>
+
+        <div class="editor-controls-card">
+          <div class="section-head editor-controls-head">
             <div>
               <h2>排版参数</h2>
-              <p class="section-sub">字距、行距、段距、稿纸宽度都集中在这里。</p>
+              <p class="section-sub">字距、行距、段距和稿纸宽度集中到编辑区里，避免页面分三块。</p>
             </div>
           </div>
-
-          <div class="controls">
+          <div class="controls controls-editor">
             <div class="control-item">
               <label for="fontSizeRange">正文字号</label>
               <div class="control-main">
@@ -4010,29 +4070,6 @@
                 <span>只去掉整篇稿纸的底色或纹理，保留模块本身样式。</span>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="editorSection" class="panel editor-panel" data-nav-section>
-        <div class="panel-head">
-          <div class="panel-heading">
-            <h2>Markdown 编辑器</h2>
-            <span class="panel-sub">支持富文本直贴转 Markdown，也支持插图与 MD 文件导入。</span>
-          </div>
-          <div class="panel-actions">
-            <button id="loadSampleBtn" class="mini-btn" type="button">示例</button>
-            <span id="wordCount">0 字</span>
-            <button id="clearBtn" class="mini-btn" type="button">清空</button>
-          </div>
-        </div>
-
-        <div class="editor-meta-strip">
-          <span class="editor-meta-kicker">结构化排版台</span>
-          <div class="editor-meta-tags" aria-hidden="true">
-            <span>飞书直贴</span>
-            <span>Word 转 Markdown</span>
-            <span>手机阅读预览</span>
           </div>
         </div>
 
