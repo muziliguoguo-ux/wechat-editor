@@ -1867,7 +1867,7 @@
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
     }
 
     body {
@@ -3247,8 +3247,7 @@
       padding: 18px;
     }
 
-    .theme-panel-top,
-    .preview-panel {
+    .theme-panel-top {
       overflow: hidden;
     }
 
@@ -3273,7 +3272,7 @@
 
     .theme-strip-copy {
       display: grid;
-      gap: 10px;
+      gap: 6px;
     }
 
     .theme-strip-actions {
@@ -3281,6 +3280,16 @@
       gap: 12px;
       justify-items: end;
       text-align: right;
+    }
+
+    .page-hero-title {
+      margin: 0;
+      font-family: "Space Grotesk", "Manrope", "PingFang SC", sans-serif;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      font-weight: 700;
+      color: #171b24;
     }
 
     .studio-branding {
@@ -3326,13 +3335,10 @@
 
     .studio-note {
       margin: 0;
-      padding: 14px 16px;
-      border-radius: 18px;
-      border: 1px solid rgba(20, 28, 45, 0.07);
-      background: linear-gradient(180deg, rgba(248, 250, 255, 0.92), rgba(244, 247, 255, 0.86));
-      color: #5d687b;
-      font-size: 12px;
-      line-height: 1.75;
+      color: #697386;
+      font-size: 13px;
+      line-height: 1.7;
+      max-width: 720px;
     }
 
     .studio-note-grid {
@@ -3687,10 +3693,9 @@
       display: grid;
       gap: 14px;
       align-content: start;
-      position: sticky;
-      top: 104px;
-      max-height: calc(100vh - 128px);
-      overflow: auto;
+      position: static;
+      max-height: none;
+      overflow: visible;
     }
 
     .preview-actions {
@@ -3729,17 +3734,17 @@
     .phone-preview-wrap {
       justify-content: center;
       align-items: flex-start;
-      height: calc(100vh - 210px);
-      min-height: 640px;
+      height: auto;
+      min-height: 720px;
       padding-top: 8px;
       overflow: hidden;
     }
 
     .phone-shell {
       width: min(100%, 360px);
-      height: calc(100% + 36px);
-      max-height: 760px;
-      transform: translateY(16px);
+      height: 760px;
+      max-height: none;
+      transform: none;
       border-radius: 36px;
       background:
         linear-gradient(180deg, #171a21, #07090d);
@@ -3816,18 +3821,12 @@
         text-align: left;
       }
 
-      .preview-panel {
-        position: static;
-        max-height: none;
-        overflow: visible;
-      }
-
       .controls-editor {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .phone-preview-wrap {
-        height: 720px;
+        min-height: 640px;
       }
     }
 
@@ -3951,19 +3950,8 @@
     <section id="themeSection" class="panel theme-panel theme-panel-top scroll-reveal" data-nav-section>
       <div class="theme-strip-head">
         <div class="theme-strip-copy">
-          <div class="studio-branding">
-            <span class="studio-mark">W</span>
-            <div class="studio-brand-copy">
-              <strong>WeType</strong>
-              <span>高级公众号排版器</span>
-            </div>
-          </div>
+          <h1 class="page-hero-title">高级公众号排版器</h1>
           <p class="studio-note">支持飞书、Notion、Word、Markdown 直接导入，整理后可一键复制到公众号后台。</p>
-          <div class="studio-note-grid" aria-hidden="true">
-            <span>飞书 / Notion / Word</span>
-            <span>Markdown / 图片 / MD</span>
-            <span>复制到公众号后台</span>
-          </div>
         </div>
         <div class="theme-strip-actions">
           <div>
