@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>操作说明 - 公众号排版器 Lite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #eff4ff;
+      --bg-2: #f7f4ef;
+      --panel: rgba(255, 255, 255, 0.84);
+      --panel-strong: rgba(255, 255, 255, 0.94);
+      --border: rgba(31, 51, 88, 0.08);
+      --ink: #1f2632;
+      --muted: #657282;
+      --accent: #5866f4;
+      --accent-2: #3fa0f3;
+      --shadow: 0 24px 64px rgba(39, 58, 109, 0.1);
+      --body-font: "Manrope", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --heading-font: "Space Grotesk", "Manrope", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--body-font);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 0% 100%, rgba(128, 205, 255, 0.18), transparent 34%),
+        radial-gradient(circle at 100% 0%, rgba(123, 136, 255, 0.16), transparent 32%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2));
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(99, 118, 168, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 118, 168, 0.08) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 14px 18px 0;
+    }
+
+    .topbar-inner {
+      max-width: 1320px;
+      min-height: 76px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 14px 30px rgba(49, 70, 120, 0.08);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .topnav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .topnav a {
+      min-width: 96px;
+      padding: 11px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: #4e5a6d;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .topnav a:hover,
+    .topnav a.active {
+      color: #3149d9;
+      background: rgba(91, 103, 245, 0.08);
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 24px 18px 56px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel {
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 54px 40px 42px;
+      text-align: center;
+      background:
+        linear-gradient(rgba(99, 118, 168, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 118, 168, 0.08) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 249, 255, 0.78));
+      background-size: 56px 56px, 56px 56px, auto;
+    }
+
+    .hero-copy {
+      width: min(100%, 900px);
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(91, 103, 245, 0.18);
+      background: rgba(255, 255, 255, 0.74);
+      color: #5a67f3;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 14px 28px rgba(91, 103, 245, 0.08);
+    }
+
+    .kicker {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #7a84a4;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--heading-font);
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      max-width: 900px;
+      font-size: clamp(40px, 5.6vw, 70px);
+      line-height: 0.98;
+      color: #1f2630;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      max-width: 760px;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 18px;
+      padding: 13px 18px;
+      font-family: var(--body-font);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 18px 34px rgba(91, 103, 245, 0.22);
+    }
+
+    .btn-secondary {
+      color: #3149d9;
+      background: rgba(91, 103, 245, 0.08);
+      border: 1px solid rgba(91, 103, 245, 0.12);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background: var(--panel-strong);
+      box-shadow: 0 18px 40px rgba(49, 70, 120, 0.08);
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .card-head p,
+    .section-copy,
+    .tips li,
+    .support-item p,
+    .spec-list li {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: 14px;
+    }
+
+    .workflow {
+      display: grid;
+      gap: 12px;
+    }
+
+    .workflow-step {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(31, 51, 88, 0.06);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 248, 255, 0.86));
+    }
+
+    .workflow-step strong {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(91, 103, 245, 0.1);
+      color: #4152c9;
+      font-family: var(--heading-font);
+      font-size: 13px;
+    }
+
+    .workflow-step h3 {
+      font-size: 16px;
+      margin-bottom: 4px;
+      color: #202938;
+    }
+
+    .prompt-box {
+      margin: 0;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(31, 51, 88, 0.08);
+      background: rgba(246, 249, 255, 0.92);
+      font-family: "Space Grotesk", "Menlo", monospace;
+      font-size: 12px;
+      line-height: 1.78;
+      color: #23303d;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .support-grid,
+    .spec-list,
+    .tips {
+      display: grid;
+      gap: 12px;
+    }
+
+    .support-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .support-item {
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(31, 51, 88, 0.06);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 248, 255, 0.84));
+    }
+
+    .support-item h3 {
+      margin-bottom: 6px;
+      font-size: 16px;
+      color: #202938;
+    }
+
+    .spec-list,
+    .tips {
+      padding-left: 18px;
+    }
+
+    .spec-list li,
+    .tips li {
+      padding-left: 4px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%) translateY(12px);
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.9);
+      color: #fff;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 30;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 42px 22px 34px;
+      }
+
+      h1 {
+        font-size: clamp(38px, 10vw, 58px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        padding: 10px 10px 0;
+      }
+
+      .topbar-inner,
+      .card,
+      .hero {
+        border-radius: 22px;
+      }
+
+      .shell {
+        padding: 18px 10px 42px;
+      }
+
+      .support-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-head,
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        text-align: center;
+      }
+
+      .topnav {
+        width: 100%;
+      }
+
+      .topnav a {
+        flex: 1 1 calc(33.33% - 8px);
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="topnav" aria-label="排版器导航">
+        <a href="./index.html#heroSection">首页</a>
+        <a href="./operation.html" class="active">操作说明</a>
+        <a href="./index.html#editorSection">公众号排版</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="panel hero">
+      <div class="hero-copy">
+        <span class="hero-pill">操作说明 · AI 写作到公众号发布</span>
+        <p class="kicker">WeChat Publishing Workflow</p>
+        <h1>先拿到结构化 Markdown<br><span>再进入排版器完成发布</span></h1>
+        <p>这页不放排版器本体，只解决使用路径。先让 AI 按公众号结构输出 Markdown，再把内容导入排版器，切风格、调节奏、复制到公众号后台。</p>
+        <div class="hero-actions">
+          <button id="copyPromptBtn" class="btn btn-primary" type="button">复制提示词</button>
+          <a class="btn btn-secondary" href="./index.html#editorSection">进入排版器</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2>发布工作流</h2>
+            <p>按这个顺序走，最快，也最稳。</p>
+          </div>
+        </div>
+        <div class="workflow">
+          <div class="workflow-step">
+            <strong>01</strong>
+            <div>
+              <h3>先用提示词生成 Markdown</h3>
+              <p>把下方提示词给 AI，让它直接输出公众号可用的 Markdown 正文，不要额外解释，不要代码围栏。</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <strong>02</strong>
+            <div>
+              <h3>导入正文内容</h3>
+              <p>支持飞书、Notion、Word 直接粘贴，也支持导入 `.md` 文件。富文本会自动转成 Markdown。</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <strong>03</strong>
+            <div>
+              <h3>切换主题并调节节奏</h3>
+              <p>选风格主题，再按需要调整字号、字间距、行高、段间距、标题模块间距和内容宽度。</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <strong>04</strong>
+            <div>
+              <h3>复制到公众号后台</h3>
+              <p>优先用“一键复制到公众号”，这是微信兼容导出；备用 HTML 只用于特殊场景。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2>支持内容来源</h2>
+            <p>这些入口都已经打通。</p>
+          </div>
+        </div>
+        <div class="support-grid">
+          <article class="support-item">
+            <h3>飞书</h3>
+            <p>富文本直接粘贴进编辑框，自动转 Markdown。</p>
+          </article>
+          <article class="support-item">
+            <h3>Notion</h3>
+            <p>标题、列表、引用、表格和链接会一起转换。</p>
+          </article>
+          <article class="support-item">
+            <h3>Word</h3>
+            <p>优先读取剪贴板里的 HTML 结构，减少格式丢失。</p>
+          </article>
+          <article class="support-item">
+            <h3>Markdown 文件</h3>
+            <p>支持 `.md`、`.markdown`、`.txt`，导入后可继续编辑。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2>AI 提示词</h2>
+            <p>复制给 AI，直接拿公众号结构化 Markdown。</p>
+          </div>
+          <button id="copyPromptBtnInline" class="btn btn-secondary" type="button">复制提示词</button>
+        </div>
+        <pre id="promptBox" class="prompt-box"></pre>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2>使用规范</h2>
+            <p>这几条会直接影响排版效果。</p>
+          </div>
+        </div>
+        <ol class="spec-list">
+          <li>全文只保留一个一级标题，避免标题层级失控。</li>
+          <li>用二级标题切模块，一个模块控制在 2 到 3 段短段落。</li>
+          <li>需要提示块时，用 `:::tip 标题 ... :::` 这种结构。</li>
+          <li>需要插图占位时，用标准 Markdown 图片语法。</li>
+          <li>不要让 AI 输出说明文字、分析过程、代码围栏和多余备注。</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2>发布前检查</h2>
+            <p>复制进公众号后台前，建议过一遍。</p>
+          </div>
+        </div>
+        <ul class="tips">
+          <li>深色或重纹理主题，先看手机预览再复制，避免正文密度过高。</li>
+          <li>表格、提示块、引用块在公众号后台会走兼容样式，优先以导出效果为准。</li>
+          <li>如果公众号后台里出现图片宽度异常，重新使用“一键复制到公众号”再试一次。</li>
+          <li>标题过长时，建议手动压缩成两行内，提高手机端阅读效率。</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2>下一步</h2>
+            <p>说明页看完，直接回排版器就行。</p>
+          </div>
+        </div>
+        <p class="section-copy">如果你已经有正文，就直接进入排版器。没有正文，就先复制提示词给 AI，生成 Markdown 后再回来继续。</p>
+        <div class="hero-actions" style="justify-content:flex-start; margin-top:18px;">
+          <a class="btn btn-primary" href="./index.html#editorSection">去公众号排版</a>
+          <a class="btn btn-secondary" href="./index.html#themeSection">先看风格主题</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      const prompt = `你是公众号写作助手。请根据我提供的主题，直接输出适合公众号排版器使用的 Markdown，要求：
+- 只保留一个一级标题
+- 使用二级标题划分模块
+- 每个模块控制在 2 到 3 段短段落
+- 重要信息前置，避免长段堆叠
+- 需要列点时使用 Markdown 列表
+- 需要提示块时使用 :::tip 提示标题 ... :::
+- 如需插图占位，使用 ![配图说明](图片链接)
+- 不要输出解释、前言、代码围栏或额外备注
+
+现在开始只输出 Markdown 正文。`;
+
+      const promptBox = document.getElementById('promptBox');
+      const toast = document.getElementById('toast');
+      const copyButtons = [
+        document.getElementById('copyPromptBtn'),
+        document.getElementById('copyPromptBtnInline')
+      ].filter(Boolean);
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        window.clearTimeout(showToast.timer);
+        showToast.timer = window.setTimeout(function () {
+          toast.classList.remove('show');
+        }, 1800);
+      }
+
+      async function copyPrompt() {
+        try {
+          await navigator.clipboard.writeText(prompt);
+          showToast('提示词已复制');
+        } catch (error) {
+          showToast('复制失败，请手动复制');
+        }
+      }
+
+      promptBox.textContent = prompt;
+      copyButtons.forEach(function (button) {
+        button.addEventListener('click', copyPrompt);
+      });
+    }());
+  </script>
+</body>
+</html>
