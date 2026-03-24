@@ -3259,33 +3259,33 @@
 
     .theme-panel-top {
       display: grid;
-      gap: 14px;
+      gap: 10px;
       align-content: start;
     }
 
     .theme-strip-head {
       display: grid;
-      grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
-      align-items: center;
-      gap: 18px;
+      grid-template-columns: minmax(320px, 1fr) auto;
+      align-items: end;
+      gap: 16px;
     }
 
     .theme-strip-copy {
       display: grid;
-      gap: 6px;
+      gap: 4px;
     }
 
     .theme-strip-actions {
-      display: grid;
+      display: flex;
+      align-items: center;
       gap: 12px;
-      justify-items: end;
       text-align: right;
     }
 
     .page-hero-title {
       margin: 0;
       font-family: "Space Grotesk", "Manrope", "PingFang SC", sans-serif;
-      font-size: clamp(34px, 4vw, 52px);
+      font-size: clamp(30px, 3.6vw, 44px);
       line-height: 0.96;
       letter-spacing: -0.05em;
       font-weight: 700;
@@ -3336,9 +3336,18 @@
     .studio-note {
       margin: 0;
       color: #697386;
-      font-size: 13px;
-      line-height: 1.7;
+      font-size: 12px;
+      line-height: 1.6;
       max-width: 720px;
+    }
+
+    .theme-strip-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #596579;
+      white-space: nowrap;
     }
 
     .studio-note-grid {
@@ -3398,7 +3407,7 @@
       align-items: stretch;
       overflow-x: auto;
       overflow-y: hidden;
-      padding-bottom: 6px;
+      padding-bottom: 2px;
       margin-top: 0;
       scrollbar-width: thin;
     }
@@ -3415,9 +3424,11 @@
     }
 
     .theme-list-top .theme-card {
-      flex: 0 0 144px;
-      min-width: 144px;
-      min-height: 118px;
+      flex: 0 0 128px;
+      min-width: 128px;
+      min-height: 100px;
+      border-radius: 18px;
+      padding: 7px;
     }
 
     .theme-card:hover {
@@ -3508,6 +3519,31 @@
       line-height: 1.3;
     }
 
+    .theme-list-top .theme-preview {
+      height: 78px;
+      border-radius: 14px;
+      padding: 6px;
+    }
+
+    .theme-list-top .theme-layout-badge {
+      display: none;
+    }
+
+    .theme-list-top .theme-preview-copy {
+      padding: 7px 8px;
+      border-radius: 11px;
+      gap: 1px;
+    }
+
+    .theme-list-top .theme-preview-copy strong {
+      font-size: 11px;
+    }
+
+    .theme-list-top .theme-preview-copy span {
+      font-size: 9px;
+      line-height: 1.2;
+    }
+
     .theme-card .theme-font {
       display: none;
     }
@@ -3548,6 +3584,19 @@
       text-overflow: ellipsis;
     }
 
+    .theme-list-top .theme-card-meta {
+      padding: 2px 2px 0;
+    }
+
+    .theme-list-top .theme-card-meta-text strong {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+    }
+
+    .theme-list-top .theme-card-meta-text span {
+      display: none;
+    }
+
     .theme-swatches {
       display: inline-flex;
       align-items: center;
@@ -3562,6 +3611,15 @@
       background: var(--dot);
       border: 1px solid rgba(255, 255, 255, 0.75);
       box-shadow: 0 2px 4px rgba(15, 23, 42, 0.08);
+    }
+
+    .theme-list-top .theme-swatches {
+      gap: 4px;
+    }
+
+    .theme-list-top .theme-swatches i {
+      width: 8px;
+      height: 8px;
     }
 
     .controls {
@@ -3717,6 +3775,13 @@
       text-transform: uppercase;
     }
 
+    .scroll-reveal,
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
     .preview-actions #activeThemeName {
       max-width: none;
       text-align: right;
@@ -3817,7 +3882,8 @@
       }
 
       .theme-strip-actions {
-        justify-items: start;
+        justify-content: space-between;
+        flex-wrap: wrap;
         text-align: left;
       }
 
@@ -3954,14 +4020,10 @@
           <p class="studio-note">支持飞书、Notion、Word、Markdown 直接导入，整理后可一键复制到公众号后台。</p>
         </div>
         <div class="theme-strip-actions">
-          <div>
-            <h2>风格主题</h2>
-            <p class="section-sub">把主题放在顶部，只保留切换和预览，不再占一整列。</p>
-          </div>
+          <span class="theme-strip-label">风格主题</span>
           <div class="section-tools">
             <p id="themeSummary">15 套主题</p>
             <button id="randomThemeBtn" class="mini-btn" type="button">随机风格</button>
-            <a class="mini-btn" href="./operation.html">操作说明</a>
           </div>
         </div>
       </div>
