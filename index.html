@@ -3229,7 +3229,7 @@
     }
 
     .workspace-main > .panel {
-      min-height: calc(100vh - 128px);
+      min-height: 0;
     }
 
     .panel {
@@ -3259,34 +3259,34 @@
 
     .theme-panel-top {
       display: grid;
-      gap: 10px;
+      gap: 12px;
       align-content: start;
     }
 
     .theme-strip-head {
       display: grid;
-      grid-template-columns: minmax(320px, 1fr) auto;
-      align-items: end;
-      gap: 16px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
     }
 
     .theme-strip-copy {
       display: grid;
-      gap: 4px;
+      gap: 6px;
     }
 
     .theme-strip-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-align: right;
     }
 
     .page-hero-title {
       margin: 0;
       font-family: "Space Grotesk", "Manrope", "PingFang SC", sans-serif;
-      font-size: clamp(30px, 3.6vw, 44px);
-      line-height: 0.96;
+      font-size: clamp(28px, 3vw, 40px);
+      line-height: 0.98;
       letter-spacing: -0.05em;
       font-weight: 700;
       color: #171b24;
@@ -3336,18 +3336,9 @@
     .studio-note {
       margin: 0;
       color: #697386;
-      font-size: 12px;
-      line-height: 1.6;
-      max-width: 720px;
-    }
-
-    .theme-strip-label {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #596579;
-      white-space: nowrap;
+      font-size: 11px;
+      line-height: 1.55;
+      max-width: 620px;
     }
 
     .studio-note-grid {
@@ -3409,6 +3400,7 @@
       overflow-y: hidden;
       padding-bottom: 2px;
       margin-top: 0;
+      gap: 10px;
       scrollbar-width: thin;
     }
 
@@ -3424,11 +3416,14 @@
     }
 
     .theme-list-top .theme-card {
-      flex: 0 0 128px;
-      min-width: 128px;
-      min-height: 100px;
-      border-radius: 18px;
-      padding: 7px;
+      flex: 0 0 116px;
+      min-width: 116px;
+      min-height: 104px;
+      border-radius: 16px;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+      border: 0;
     }
 
     .theme-card:hover {
@@ -3520,9 +3515,13 @@
     }
 
     .theme-list-top .theme-preview {
-      height: 78px;
-      border-radius: 14px;
-      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100px;
+      border-radius: 16px;
+      padding: 8px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     }
 
     .theme-list-top .theme-layout-badge {
@@ -3530,18 +3529,23 @@
     }
 
     .theme-list-top .theme-preview-copy {
-      padding: 7px 8px;
-      border-radius: 11px;
-      gap: 1px;
+      padding: 8px 8px 7px;
+      border-radius: 12px;
+      gap: 2px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82));
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
 
     .theme-list-top .theme-preview-copy strong {
       font-size: 11px;
+      letter-spacing: -0.03em;
     }
 
     .theme-list-top .theme-preview-copy span {
       font-size: 9px;
-      line-height: 1.2;
+      line-height: 1.24;
+      color: #5f6d83;
     }
 
     .theme-card .theme-font {
@@ -3585,15 +3589,6 @@
     }
 
     .theme-list-top .theme-card-meta {
-      padding: 2px 2px 0;
-    }
-
-    .theme-list-top .theme-card-meta-text strong {
-      font-size: 9px;
-      letter-spacing: 0.08em;
-    }
-
-    .theme-list-top .theme-card-meta-text span {
       display: none;
     }
 
@@ -3620,6 +3615,31 @@
     .theme-list-top .theme-swatches i {
       width: 8px;
       height: 8px;
+    }
+
+    .theme-list-top .theme-card.active .theme-preview {
+      box-shadow:
+        0 0 0 2px rgba(63, 97, 255, 0.18),
+        0 16px 30px rgba(63, 97, 255, 0.14);
+    }
+
+    .theme-list-top .theme-card.active .theme-preview-copy {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .theme-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(20, 28, 45, 0.06);
+      background: rgba(248, 250, 255, 0.92);
+      color: #556173;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
     }
 
     .controls {
@@ -3662,43 +3682,6 @@
 
     .editor-controls-head {
       margin-bottom: 0;
-    }
-
-    .editor-meta-strip {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(20, 28, 45, 0.06);
-      background: linear-gradient(180deg, rgba(248, 250, 255, 0.94), rgba(244, 247, 252, 0.9));
-    }
-
-    .editor-meta-kicker {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #475469;
-    }
-
-    .editor-meta-tags {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .editor-meta-tags span {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(20, 28, 45, 0.06);
-      color: #667387;
-      font-size: 11px;
-      line-height: 1.2;
     }
 
     .toolbar-group {
@@ -3881,12 +3864,6 @@
         grid-template-columns: 1fr;
       }
 
-      .theme-strip-actions {
-        justify-content: space-between;
-        flex-wrap: wrap;
-        text-align: left;
-      }
-
       .controls-editor {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -3946,8 +3923,17 @@
         padding: 0 56px;
       }
 
+      .theme-strip-actions,
       .preview-actions {
         justify-items: stretch;
+      }
+
+      .theme-strip-actions {
+        flex-wrap: wrap;
+      }
+
+      .theme-strip-actions {
+        justify-content: flex-start;
       }
 
       .preview-mode-badge {
@@ -3974,15 +3960,6 @@
     }
 
     @media (max-width: 520px) {
-      .studio-note-grid {
-        gap: 6px;
-      }
-
-      .editor-meta-strip {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
       .phone-shell {
         width: min(100%, 330px);
         height: 680px;
@@ -4020,11 +3997,8 @@
           <p class="studio-note">支持飞书、Notion、Word、Markdown 直接导入，整理后可一键复制到公众号后台。</p>
         </div>
         <div class="theme-strip-actions">
-          <span class="theme-strip-label">风格主题</span>
-          <div class="section-tools">
-            <p id="themeSummary">15 套主题</p>
-            <button id="randomThemeBtn" class="mini-btn" type="button">随机风格</button>
-          </div>
+          <span id="themeSummary" class="theme-count">15 套主题</span>
+          <button id="randomThemeBtn" class="mini-btn" type="button">随机风格</button>
         </div>
       </div>
       <div id="themeList" class="theme-list theme-list-top" aria-label="风格主题"></div>
@@ -4044,20 +4018,11 @@
           </div>
         </div>
 
-        <div class="editor-meta-strip">
-          <span class="editor-meta-kicker">结构化排版台</span>
-          <div class="editor-meta-tags" aria-hidden="true">
-            <span>飞书直贴</span>
-            <span>Word 转 Markdown</span>
-            <span>手机阅读预览</span>
-          </div>
-        </div>
-
         <div class="editor-controls-card">
           <div class="section-head editor-controls-head">
             <div>
               <h2>排版参数</h2>
-              <p class="section-sub">字距、行距、段距和稿纸宽度集中到编辑区里，避免页面分三块。</p>
+              <p class="section-sub">字距、行距、段距和稿纸宽度集中调节，减少切换成本。</p>
             </div>
           </div>
           <div class="controls controls-editor">
