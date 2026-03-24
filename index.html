@@ -3144,27 +3144,20 @@
       }
     }
 
-    /* Gemini-inspired app layout overrides */
+    /* Minimal studio layout overrides */
     :root {
-      --site-bg: #f4f6fb;
-      --site-grid: rgba(31, 41, 55, 0.045);
-      --site-border: rgba(20, 28, 45, 0.08);
-      --site-shadow: 0 20px 54px rgba(16, 24, 40, 0.08);
-      --site-ink: #171b24;
-      --site-muted: #697386;
-      --site-accent: #2d62ff;
-      --site-accent-2: #6fb2ff;
-      --site-accent-soft: rgba(45, 98, 255, 0.08);
+      --site-bg: #f6f5f1;
+      --site-ink: #171717;
+      --site-muted: #7c7a73;
+      --site-border: #e7e4db;
+      --site-soft: #f2f1eb;
+      --site-accent: #111111;
+      --site-accent-2: #111111;
+      --site-accent-soft: rgba(17, 17, 17, 0.06);
     }
 
     body {
-      background-image:
-        linear-gradient(var(--site-grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--site-grid) 1px, transparent 1px),
-        radial-gradient(720px 340px at 0% 100%, rgba(102, 185, 255, 0.08), transparent 62%),
-        radial-gradient(620px 320px at 100% 0%, rgba(122, 131, 255, 0.08), transparent 58%),
-        linear-gradient(180deg, #fafbfe 0%, #f4f6fb 52%, #f8faff 100%);
-      background-size: 56px 56px, 56px 56px, auto, auto, auto;
+      background: #f6f5f1;
     }
 
     body::before,
@@ -3173,589 +3166,455 @@
     }
 
     .topbar {
-      padding: 16px 18px 0;
+      padding: 14px 18px 0;
     }
 
     .topbar-inner {
       max-width: 1500px;
-      min-height: 72px;
-      border-radius: 20px;
-      border-color: rgba(20, 28, 45, 0.07);
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      min-height: 58px;
+      padding: 0 18px;
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      align-items: center;
+      gap: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--site-border);
+      background: #ffffff;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .topbar-brand {
+      font-family: "Space Grotesk", "Manrope", "PingFang SC", sans-serif;
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--site-ink);
+      white-space: nowrap;
     }
 
     .topnav {
-      min-width: min(100%, 380px);
-      gap: 10px;
-      padding: 6px;
-      border-radius: 999px;
-      background: rgba(245, 247, 252, 0.96);
-      border: 1px solid rgba(20, 28, 45, 0.06);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+      margin-left: auto;
+      min-width: auto;
+      padding: 0;
+      gap: 6px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
     }
 
     .topnav a,
     .mobile-drawer a {
-      min-width: 108px;
-      color: #465266;
-      font-weight: 700;
-      padding: 10px 14px;
+      min-width: auto;
+      padding: 8px 12px;
+      border-radius: 10px;
+      color: #6e6b64;
+      font-size: 13px;
+      font-weight: 600;
     }
 
     .topnav a:hover,
     .topnav a.active,
     .mobile-drawer a:hover,
     .mobile-drawer a.active {
-      color: #2c4ef2;
-      background: #ffffff;
-      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+      color: #ffffff;
+      background: #111111;
+      box-shadow: none;
     }
 
     .shell-app {
       max-width: 1500px;
-      padding: 22px 18px 36px;
+      padding: 14px 18px 28px;
       display: grid;
-      gap: 18px;
+      gap: 16px;
     }
 
-    .workspace-main {
+    .workspace-main.workspace-studio {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 430px;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .workspace-main > .panel {
-      min-height: 0;
+      grid-template-columns: 232px minmax(0, 1fr) 364px;
+      gap: 16px;
+      align-items: stretch;
     }
 
     .panel {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(20, 28, 45, 0.08);
-      border-radius: 28px;
-      box-shadow: 0 18px 52px rgba(15, 23, 42, 0.08);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: #ffffff;
+      border: 1px solid var(--site-border);
+      border-radius: 18px;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
     }
 
     .theme-panel-top,
     .editor-panel,
     .preview-panel {
-      padding: 18px;
-    }
-
-    .theme-panel-top {
-      overflow: hidden;
-    }
-
-    .editor-panel {
-      display: grid;
-      gap: 14px;
-      align-content: start;
-    }
-
-    .theme-panel-top {
-      display: grid;
-      gap: 12px;
-      align-content: start;
-    }
-
-    .theme-strip-head {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .theme-strip-copy {
-      display: grid;
-      gap: 6px;
-    }
-
-    .theme-strip-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-align: right;
-    }
-
-    .page-hero-title {
-      margin: 0;
-      font-family: "Space Grotesk", "Manrope", "PingFang SC", sans-serif;
-      font-size: clamp(28px, 3vw, 40px);
-      line-height: 0.98;
-      letter-spacing: -0.05em;
-      font-weight: 700;
-      color: #171b24;
-    }
-
-    .studio-branding {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .studio-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #17191f;
-      color: #fff;
-      font-family: "Space Grotesk", "Manrope", sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      box-shadow: 0 14px 24px rgba(23, 25, 31, 0.14);
-    }
-
-    .studio-brand-copy {
-      display: grid;
-      gap: 2px;
-    }
-
-    .studio-brand-copy strong {
-      font-family: "Space Grotesk", "Manrope", sans-serif;
-      font-size: 17px;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: #171b24;
-    }
-
-    .studio-brand-copy span {
-      font-size: 12px;
-      color: #7a8599;
-    }
-
-    .studio-note {
-      margin: 0;
-      color: #697386;
-      font-size: 11px;
-      line-height: 1.55;
-      max-width: 620px;
-    }
-
-    .studio-note-grid {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: -2px;
-    }
-
-    .studio-note-grid span {
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(20, 28, 45, 0.06);
-      background: rgba(250, 251, 254, 0.9);
-      color: #5e6a7d;
-      font-size: 11px;
-      line-height: 1.2;
-    }
-
-    .section-head,
-    .panel-head {
-      margin-bottom: 0;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .section-head h2,
-    .panel-head h2 {
-      font-size: 22px;
-    }
-
-    .section-tools {
-      gap: 8px;
-    }
-
-    .section-tools p {
-      margin: 0;
-      font-size: 12px;
-      color: #6a7688;
-    }
-
-    .theme-panel {
-      gap: 0;
-    }
-
-    .theme-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .theme-list-top {
-      display: flex;
-      align-items: stretch;
-      overflow-x: auto;
-      overflow-y: hidden;
-      padding-bottom: 2px;
-      margin-top: 0;
-      gap: 10px;
-      scrollbar-width: thin;
-    }
-
-    .theme-card {
-      aspect-ratio: auto;
-      min-height: 124px;
-      padding: 8px;
-      border-radius: 22px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(246, 249, 255, 0.92));
-      box-shadow: 0 12px 26px rgba(31, 41, 55, 0.05);
-      border: 1px solid rgba(20, 28, 45, 0.06);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .theme-list-top .theme-card {
-      flex: 0 0 116px;
-      min-width: 116px;
-      min-height: 104px;
-      border-radius: 16px;
       padding: 0;
-      background: transparent;
-      box-shadow: none;
-      border: 0;
     }
 
-    .theme-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 28px rgba(31, 41, 55, 0.08);
+    .studio-sidebar {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+      padding: 14px;
+      overflow: hidden;
     }
 
-    .theme-preview {
-      position: relative;
-      height: 102px;
-      border-radius: 18px;
-      padding: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.48);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    .studio-sidebar-section {
+      display: grid;
+      gap: 10px;
     }
 
-    .theme-preview::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: 0.42;
-      pointer-events: none;
-    }
-
-    .theme-card[data-layout="editorial"] .theme-preview::before,
-    .theme-card[data-layout="dossier"] .theme-preview::before {
-      background-image: linear-gradient(rgba(43, 51, 67, 0.08) 1px, transparent 1px);
-      background-size: 100% 10px;
-    }
-
-    .theme-card[data-layout="notebook"] .theme-preview::before {
-      background-image:
-        linear-gradient(90deg, rgba(43, 51, 67, 0.08) 1px, transparent 1px),
-        linear-gradient(rgba(43, 51, 67, 0.05) 1px, transparent 1px);
-      background-size: 12px 100%, 100% 12px;
-    }
-
-    .theme-card[data-layout="tech"] .theme-preview::before {
-      background-image:
-        linear-gradient(90deg, rgba(43, 51, 67, 0.09) 1px, transparent 1px),
-        linear-gradient(rgba(43, 51, 67, 0.09) 1px, transparent 1px);
-      background-size: 18px 18px;
-    }
-
-    .theme-card[data-layout="poster"] .theme-preview::before {
-      background:
-        radial-gradient(circle at 15% 18%, rgba(255, 255, 255, 0.55), transparent 24%),
-        linear-gradient(120deg, transparent 0%, transparent 42%, rgba(255, 255, 255, 0.45) 58%, transparent 72%);
-    }
-
-    .theme-card[data-layout="palace"] .theme-preview::before {
-      background:
-        linear-gradient(90deg, rgba(43, 51, 67, 0.07) 0 1px, transparent 1px 100%),
-        linear-gradient(rgba(43, 51, 67, 0.07) 0 1px, transparent 1px 100%);
-      background-size: 22px 22px;
-      opacity: 0.25;
-    }
-
-    .theme-card[data-layout="minimal"] .theme-preview::before {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.15));
-      opacity: 0.55;
-    }
-
-    .theme-layout-badge {
-      top: 8px;
-      left: 8px;
-      padding: 4px 7px;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-    }
-
-    .theme-preview-copy {
-      gap: 3px;
-      padding: 9px 10px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.42);
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
-    }
-
-    .theme-preview-copy strong {
-      font-size: 13px;
-      line-height: 1.12;
-    }
-
-    .theme-preview-copy span {
-      font-size: 10px;
-      line-height: 1.3;
-    }
-
-    .theme-list-top .theme-preview {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      height: 100px;
-      border-radius: 16px;
-      padding: 8px;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-    }
-
-    .theme-list-top .theme-layout-badge {
-      display: none;
-    }
-
-    .theme-list-top .theme-preview-copy {
-      padding: 8px 8px 7px;
-      border-radius: 12px;
-      gap: 2px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82));
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-    }
-
-    .theme-list-top .theme-preview-copy strong {
-      font-size: 11px;
-      letter-spacing: -0.03em;
-    }
-
-    .theme-list-top .theme-preview-copy span {
-      font-size: 9px;
-      line-height: 1.24;
-      color: #5f6d83;
-    }
-
-    .theme-card .theme-font {
-      display: none;
-    }
-
-    .theme-card.active .theme-preview-copy {
-      background: rgba(255, 255, 255, 0.88);
-    }
-
-    .theme-card-meta {
+    .studio-sidebar-label-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      padding: 2px 4px 0;
+      gap: 8px;
     }
 
-    .theme-card-meta-text {
-      min-width: 0;
-      display: grid;
-      gap: 2px;
-    }
-
-    .theme-card-meta-text strong {
+    .studio-sidebar-label {
       font-size: 11px;
       line-height: 1.2;
-      color: #4d596d;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-    }
-
-    .theme-card-meta-text span {
-      font-size: 10px;
-      line-height: 1.25;
-      color: #78859a;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .theme-list-top .theme-card-meta {
-      display: none;
-    }
-
-    .theme-swatches {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      flex-shrink: 0;
-    }
-
-    .theme-swatches i {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--dot);
-      border: 1px solid rgba(255, 255, 255, 0.75);
-      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.08);
-    }
-
-    .theme-list-top .theme-swatches {
-      gap: 4px;
-    }
-
-    .theme-list-top .theme-swatches i {
-      width: 8px;
-      height: 8px;
-    }
-
-    .theme-list-top .theme-card.active .theme-preview {
-      box-shadow:
-        0 0 0 2px rgba(63, 97, 255, 0.18),
-        0 16px 30px rgba(63, 97, 255, 0.14);
-    }
-
-    .theme-list-top .theme-card.active .theme-preview-copy {
-      background: rgba(255, 255, 255, 0.95);
+      color: #8a877f;
+      font-weight: 700;
     }
 
     .theme-count {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      min-height: 34px;
-      padding: 0 12px;
+      min-height: 28px;
+      padding: 0 10px;
       border-radius: 999px;
-      border: 1px solid rgba(20, 28, 45, 0.06);
-      background: rgba(248, 250, 255, 0.92);
-      color: #556173;
-      font-size: 12px;
-      font-weight: 700;
+      border: 1px solid var(--site-border);
+      background: var(--site-soft);
+      color: #6f6c65;
+      font-size: 11px;
+      font-weight: 600;
       white-space: nowrap;
     }
 
-    .controls {
+    .theme-list-sidebar {
+      display: grid;
       grid-template-columns: 1fr;
       gap: 10px;
-      margin-top: 0;
+      margin: 0;
+      max-height: 332px;
+      overflow: auto;
+      padding-right: 2px;
     }
 
-    .controls-editor {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .theme-list-sidebar .theme-card {
+      display: grid;
       gap: 10px;
+      min-height: 0;
+      padding: 10px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid var(--site-border);
+      box-shadow: none;
+      transition: border-color 0.18s ease, background-color 0.18s ease;
     }
 
-    .control-item {
-      padding: 14px;
-      border-radius: 20px;
-      background: rgba(251, 252, 254, 0.96);
-      border: 1px solid rgba(20, 28, 45, 0.06);
+    .theme-list-sidebar .theme-card:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: #d8d5cb;
+    }
+
+    .theme-list-sidebar .theme-card.active {
+      border-color: #111111;
+      box-shadow: inset 0 0 0 1px #111111;
+    }
+
+    .theme-list-sidebar .theme-card-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 34px;
+      padding: 0 10px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--c1), var(--c2) 58%, var(--c3));
+    }
+
+    .theme-list-sidebar .theme-card-kicker {
+      font-size: 9px;
+      line-height: 1.2;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(23, 23, 23, 0.58);
+      font-weight: 700;
+    }
+
+    .theme-list-sidebar .theme-card-body {
+      display: grid;
+      gap: 3px;
+    }
+
+    .theme-list-sidebar .theme-card-body strong {
+      font-size: 13px;
+      line-height: 1.18;
+      color: #171717;
+      letter-spacing: -0.02em;
+    }
+
+    .theme-list-sidebar .theme-card-body span {
+      display: block;
+      font-size: 10px;
+      line-height: 1.4;
+      color: #8a877f;
+    }
+
+    .theme-list-sidebar .theme-swatches i {
+      width: 8px;
+      height: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.92);
       box-shadow: none;
     }
 
+    .controls-sidebar {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 0;
+    }
+
+    .control-item {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid var(--site-border);
+      box-shadow: none;
+      gap: 8px;
+    }
+
     .control-item label {
-      font-size: 13px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #5f5c55;
     }
 
-    .editor-toolbar {
-      display: grid;
-      gap: 10px;
-      margin-top: -2px;
+    .control-item output {
+      font-size: 11px;
+      color: #8a877f;
     }
 
-    .editor-controls-card {
+    .control-item-toggle .toggle-field span {
+      font-size: 11px;
+      line-height: 1.45;
+      color: #8a877f;
+    }
+
+    .editor-panel-minimal,
+    .preview-panel-minimal {
+      min-height: calc(100vh - 106px);
+      overflow: hidden;
+    }
+
+    .editor-panel-minimal {
       display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .editor-topbar,
+    .preview-topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
       gap: 12px;
-      padding: 14px;
-      border-radius: 22px;
-      border: 1px solid rgba(20, 28, 45, 0.06);
-      background: linear-gradient(180deg, rgba(248, 250, 255, 0.96), rgba(244, 247, 252, 0.9));
-    }
-
-    .editor-controls-head {
-      margin-bottom: 0;
-    }
-
-    .toolbar-group {
-      display: grid;
-      gap: 8px;
       padding: 12px 14px;
-      border-radius: 20px;
-      border: 1px solid rgba(20, 28, 45, 0.06);
-      background: rgba(250, 251, 254, 0.9);
+      border-bottom: 1px solid var(--site-border);
+      background: #ffffff;
     }
 
-    .toolbar-label {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #556173;
-    }
-
-    .toolbar-actions {
+    .editor-toolbar-lite {
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
     }
 
-    .field-label {
-      margin-top: 2px;
-      margin-bottom: 0;
-    }
-
-    textarea {
-      min-height: calc(100vh - 320px);
-      padding: 20px 22px;
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.98);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
-      font-size: 14px;
-      line-height: 1.82;
-    }
-
-    .field-hint {
-      margin: 0;
-      font-size: 12px;
-      line-height: 1.7;
-    }
-
-    .editor-foot {
-      margin-top: auto;
-    }
-
-    .preview-panel {
-      display: grid;
-      gap: 14px;
-      align-content: start;
-      position: static;
-      max-height: none;
-      overflow: visible;
-    }
-
+    .panel-actions,
     .preview-actions {
-      display: grid;
-      justify-items: end;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
       gap: 8px;
+    }
+
+    .panel-actions > span,
+    #activeThemeName {
+      max-width: none;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #86837c;
+      text-align: left;
+    }
+
+    .preview-heading-lite {
+      display: grid;
+      gap: 4px;
+    }
+
+    .preview-heading-lite strong {
+      font-size: 14px;
+      line-height: 1.2;
+      color: #171717;
+    }
+
+    .mini-btn,
+    .chip-btn,
+    .btn {
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: none;
+    }
+
+    .mini-btn,
+    .chip-btn,
+    .btn-outline {
+      border: 1px solid var(--site-border);
+      background: #ffffff;
+      color: #3e3c37;
+    }
+
+    .chip-btn:hover,
+    .mini-btn:hover,
+    .btn-outline:hover {
+      background: var(--site-soft);
+      color: #171717;
+    }
+
+    .btn-dark {
+      border: 1px solid #111111;
+      background: #111111;
+      color: #ffffff;
+      box-shadow: none;
     }
 
     .preview-mode-badge {
-      padding: 7px 10px;
+      padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(245, 247, 252, 0.96);
-      border: 1px solid rgba(20, 28, 45, 0.06);
-      color: #4a5568;
+      background: var(--site-soft);
+      border: 1px solid var(--site-border);
+      color: #696760;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
       line-height: 1.2;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    }
+
+    .editor-canvas {
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      min-height: 0;
+      background: #ffffff;
+    }
+
+    textarea {
+      min-height: 0;
+      height: 100%;
+      padding: 18px 20px 22px;
+      border: 0;
+      border-radius: 0;
+      background: #ffffff;
+      box-shadow: none;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .editor-bottom-note {
+      padding: 10px 14px 14px;
+      border-top: 1px solid var(--site-border);
+      color: #8a877f;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .preview-panel-minimal {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .phone-preview-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 0;
+      height: 100%;
+      padding: 18px 16px;
+      overflow: hidden;
+      background: #faf9f6;
+    }
+
+    .phone-shell {
+      width: min(100%, 320px);
+      height: 760px;
+      padding: 8px;
+      border-radius: 38px;
+      border: 0;
+      background: #111111;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .phone-shell::before {
+      display: none;
+    }
+
+    .phone-screen {
+      border-radius: 30px;
+      background: #ffffff;
+      box-shadow: none;
+    }
+
+    .phone-status {
+      padding: 16px 18px 10px;
+      font-size: 12px;
+      color: #111111;
+    }
+
+    .wechat-nav {
+      min-height: 48px;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(23, 23, 23, 0.06);
+    }
+
+    .wechat-nav-title strong {
+      font-size: 14px;
+    }
+
+    .preview-stage {
+      height: 100%;
+      max-height: none;
+      padding: 0;
+      border: 0;
+      border-radius: 0 0 30px 30px;
+      overflow: auto;
+      background: #ffffff;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .preview-stage .article {
+      width: 100%;
+      max-width: 100%;
+      min-height: 100%;
+      margin: 0;
+      padding: 22px 16px 40px;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .floating-rail,
+    .floating-dock {
+      display: none;
     }
 
     .scroll-reveal,
@@ -3765,183 +3624,83 @@
       transition: none;
     }
 
-    .preview-actions #activeThemeName {
-      max-width: none;
-      text-align: right;
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    .btn-dark {
-      border: 0;
-      color: #fff;
-      background: #17191f;
-      box-shadow: 0 14px 26px rgba(23, 25, 31, 0.18);
-    }
-
-    .phone-preview-wrap {
-      justify-content: center;
-      align-items: flex-start;
-      height: auto;
-      min-height: 720px;
-      padding-top: 8px;
-      overflow: hidden;
-    }
-
-    .phone-shell {
-      width: min(100%, 360px);
-      height: 760px;
-      max-height: none;
-      transform: none;
-      border-radius: 36px;
-      background:
-        linear-gradient(180deg, #171a21, #07090d);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 36px 72px rgba(15, 23, 42, 0.22);
-    }
-
-    .phone-screen {
-      border-radius: 30px;
-      background: #f7f7fa;
-    }
-
-    .phone-status {
-      padding: 16px 18px 10px;
-    }
-
-    .wechat-nav {
-      min-height: 50px;
-      background: rgba(255, 255, 255, 0.98);
-    }
-
-    .wechat-nav-title span {
-      display: none;
-    }
-
-    .preview-stage {
-      border-radius: 0 0 30px 30px;
-    }
-
-    .preview-stage .article {
-      padding: 24px 16px 60px;
-    }
-
-    .phone-screen::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: 10px;
-      transform: translateX(-50%);
-      width: 110px;
-      height: 4px;
-      border-radius: 999px;
-      background: rgba(17, 24, 39, 0.18);
-      z-index: 3;
-      pointer-events: none;
-    }
-
-    .floating-rail {
-      display: none;
-    }
-
-    .floating-dock {
-      display: none;
-    }
-
     @media (max-width: 1380px) {
-      .workspace-main {
-        grid-template-columns: minmax(0, 1fr) 392px;
+      .workspace-main.workspace-studio {
+        grid-template-columns: 220px minmax(0, 1fr) 340px;
       }
     }
 
     @media (max-width: 1180px) {
-      .workspace-main {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      .workspace-main.workspace-studio {
+        grid-template-columns: 220px minmax(0, 1fr);
       }
 
-      .theme-strip-head {
-        grid-template-columns: 1fr;
-      }
-
-      .controls-editor {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .phone-preview-wrap {
-        min-height: 640px;
+      .preview-panel-minimal {
+        grid-column: span 2;
+        min-height: 760px;
       }
     }
 
     @media (max-width: 900px) {
-      .workspace-main {
+      .workspace-main.workspace-studio {
         grid-template-columns: 1fr;
       }
 
-      .workspace-main > .panel,
-      .theme-panel-top,
-      .preview-panel {
+      .studio-sidebar,
+      .editor-panel-minimal,
+      .preview-panel-minimal {
         min-height: 0;
-        position: static;
+      }
+
+      .theme-list-sidebar {
         max-height: none;
+      }
+
+      .preview-panel-minimal {
+        grid-column: auto;
+      }
+
+      .phone-preview-wrap {
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar {
+        padding: 10px 10px 0;
+      }
+
+      .topbar-inner {
+        min-height: 60px;
+        padding: 0 14px 0 56px;
+        grid-template-columns: auto 1fr;
+      }
+
+      .topbar-brand {
+        display: none;
+      }
+
+      .shell-app {
+        padding: 12px 10px 88px;
+      }
+
+      .editor-topbar,
+      .preview-topbar {
+        flex-direction: column;
+      }
+
+      .panel-actions,
+      .preview-actions {
+        width: 100%;
+        justify-content: flex-start;
       }
 
       textarea {
         min-height: 460px;
       }
 
-      .controls-editor {
-        grid-template-columns: 1fr;
-      }
-
-      .phone-preview-wrap {
-        height: auto;
-        min-height: 0;
-      }
-
       .phone-shell {
-        height: 720px;
-        transform: none;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .shell-app {
-        padding: 16px 10px 92px;
-      }
-
-      .workspace-main {
-        gap: 14px;
-      }
-
-      .topbar {
-        padding: 10px 10px 0;
-      }
-
-      .topbar-inner {
-        min-height: 66px;
-        padding: 0 56px;
-      }
-
-      .theme-strip-actions,
-      .preview-actions {
-        justify-items: stretch;
-      }
-
-      .theme-strip-actions {
-        flex-wrap: wrap;
-      }
-
-      .theme-strip-actions {
-        justify-content: flex-start;
-      }
-
-      .preview-mode-badge {
-        justify-self: start;
-      }
-
-      .preview-actions #activeThemeName {
-        text-align: left;
+        height: 700px;
       }
 
       .floating-dock {
@@ -3953,15 +3712,19 @@
 
       .dock-btn {
         width: 100%;
-        border-radius: 18px;
-        background: #17191f;
-        box-shadow: 0 16px 34px rgba(23, 25, 31, 0.22);
+        border-radius: 14px;
+        background: #111111;
+        box-shadow: none;
       }
     }
 
     @media (max-width: 520px) {
+      .studio-sidebar {
+        padding: 12px;
+      }
+
       .phone-shell {
-        width: min(100%, 330px);
+        width: min(100%, 320px);
         height: 680px;
       }
     }
@@ -3975,6 +3738,7 @@
         <span></span>
         <span></span>
       </button>
+      <div class="topbar-brand">高级公众号排版器</div>
       <span class="mobile-title">公众号排版器</span>
       <nav class="topnav" aria-label="排版器导航">
         <a href="#heroSection" data-nav-link>首页</a>
@@ -3990,54 +3754,27 @@
   </header>
 
   <div class="shell shell-app">
-    <section id="themeSection" class="panel theme-panel theme-panel-top scroll-reveal" data-nav-section>
-      <div class="theme-strip-head">
-        <div class="theme-strip-copy">
-          <h1 class="page-hero-title">高级公众号排版器</h1>
-          <p class="studio-note">支持飞书、Notion、Word、Markdown 直接导入，整理后可一键复制到公众号后台。</p>
-        </div>
-        <div class="theme-strip-actions">
+    <main id="heroSection" class="workspace workspace-main workspace-studio scroll-reveal" data-nav-section>
+      <aside id="themeSection" class="panel theme-panel theme-panel-top studio-sidebar" data-nav-section>
+        <div class="studio-sidebar-section">
+          <div class="studio-sidebar-label-row">
+            <span class="studio-sidebar-label">风格主题</span>
+            <button id="randomThemeBtn" class="mini-btn" type="button">随机</button>
+          </div>
           <span id="themeSummary" class="theme-count">15 套主题</span>
-          <button id="randomThemeBtn" class="mini-btn" type="button">随机风格</button>
-        </div>
-      </div>
-      <div id="themeList" class="theme-list theme-list-top" aria-label="风格主题"></div>
-    </section>
-
-    <main id="heroSection" class="workspace workspace-main scroll-reveal" data-nav-section>
-      <section id="editorSection" class="panel editor-panel" data-nav-section>
-        <div class="panel-head">
-          <div class="panel-heading">
-            <h2>Markdown 编辑器</h2>
-            <span class="panel-sub">支持富文本直贴转 Markdown，也支持插图与 MD 文件导入。</span>
-          </div>
-          <div class="panel-actions">
-            <button id="loadSampleBtn" class="mini-btn" type="button">示例</button>
-            <span id="wordCount">0 字</span>
-            <button id="clearBtn" class="mini-btn" type="button">清空</button>
-          </div>
+          <div id="themeList" class="theme-list theme-list-sidebar" aria-label="风格主题"></div>
         </div>
 
-        <div class="editor-controls-card">
-          <div class="section-head editor-controls-head">
-            <div>
-              <h2>排版参数</h2>
-              <p class="section-sub">字距、行距、段距和稿纸宽度集中调节，减少切换成本。</p>
-            </div>
+        <div class="studio-sidebar-section">
+          <div class="studio-sidebar-label-row">
+            <span class="studio-sidebar-label">排版控制</span>
           </div>
-          <div class="controls controls-editor">
+          <div class="controls controls-sidebar">
             <div class="control-item">
-              <label for="fontSizeRange">正文字号</label>
+              <label for="fontSizeRange">字号</label>
               <div class="control-main">
                 <input id="fontSizeRange" type="range" min="14" max="20" value="16">
                 <output id="fontSizeValue">16px</output>
-              </div>
-            </div>
-            <div class="control-item">
-              <label for="letterSpaceRange">字间距</label>
-              <div class="control-main">
-                <input id="letterSpaceRange" type="range" min="0" max="1.2" value="0.12" step="0.02">
-                <output id="letterSpaceValue">0.12px</output>
               </div>
             </div>
             <div class="control-item">
@@ -4055,7 +3792,14 @@
               </div>
             </div>
             <div class="control-item">
-              <label for="headingGapRange">标题模块间距</label>
+              <label for="letterSpaceRange">字间距</label>
+              <div class="control-main">
+                <input id="letterSpaceRange" type="range" min="0" max="1.2" value="0.12" step="0.02">
+                <output id="letterSpaceValue">0.12px</output>
+              </div>
+            </div>
+            <div class="control-item">
+              <label for="headingGapRange">标题间距</label>
               <div class="control-main">
                 <input id="headingGapRange" type="range" min="20" max="48" value="28" step="1">
                 <output id="headingGapValue">28px</output>
@@ -4071,66 +3815,62 @@
             <select id="markerStyleSelect" hidden aria-hidden="true" tabindex="-1">
               <option value="none" selected>无编号</option>
             </select>
-            <div class="control-item">
+            <div class="control-item control-item-toggle">
               <label for="autoEmphasisToggle">自动标重点</label>
               <div class="toggle-field">
                 <input id="autoEmphasisToggle" class="toggle" type="checkbox">
-                <span>实验功能，按段落自动加重点底色。</span>
+                <span>按段落自动补重点。</span>
               </div>
             </div>
-            <div class="control-item">
+            <div class="control-item control-item-toggle">
               <label for="flatModeToggle">去稿纸底色</label>
               <div class="toggle-field">
                 <input id="flatModeToggle" class="toggle" type="checkbox">
-                <span>只去掉整篇稿纸的底色或纹理，保留模块本身样式。</span>
+                <span>保留模块样式，仅去底色。</span>
               </div>
             </div>
           </div>
         </div>
+      </aside>
 
-        <div class="editor-toolbar">
-          <div class="toolbar-group">
-            <span class="toolbar-label">结构模块</span>
-            <div class="toolbar-actions snippet-row">
-              <button class="chip-btn" type="button" data-snippet="h2">插入小节</button>
-              <button class="chip-btn" type="button" data-snippet="quote">插入引用</button>
-              <button class="chip-btn" type="button" data-snippet="list">插入列表</button>
-              <button class="chip-btn" type="button" data-snippet="tip">插入提示块</button>
-              <button class="chip-btn" type="button" data-snippet="table">插入表格</button>
-              <button class="chip-btn" type="button" data-snippet="divider">插入分割线</button>
-            </div>
+      <section id="editorSection" class="panel editor-panel editor-panel-minimal" data-nav-section>
+        <div class="editor-topbar">
+          <div class="editor-toolbar-lite">
+            <button class="chip-btn" type="button" data-snippet="h2">小节</button>
+            <button class="chip-btn" type="button" data-snippet="quote">引用</button>
+            <button class="chip-btn" type="button" data-snippet="list">列表</button>
+            <button class="chip-btn" type="button" data-snippet="tip">提示块</button>
+            <button class="chip-btn" type="button" data-snippet="table">表格</button>
+            <button class="chip-btn" type="button" data-snippet="divider">分割线</button>
+            <button id="uploadMdBtn" class="chip-btn" type="button">导入 MD</button>
+            <button id="insertImageUrlBtn" class="chip-btn" type="button">图片 URL</button>
+            <button id="uploadImageBtn" class="chip-btn" type="button">上传图片</button>
           </div>
-          <div class="toolbar-group">
-            <span class="toolbar-label">导入与插图</span>
-            <div class="toolbar-actions snippet-row">
-              <button id="uploadMdBtn" class="chip-btn" type="button">导入 MD 文件</button>
-              <button id="insertImageUrlBtn" class="chip-btn" type="button">插入图片 URL</button>
-              <button id="uploadImageBtn" class="chip-btn" type="button">上传本地图片</button>
-            </div>
+          <div class="panel-actions editor-actions-compact">
+            <button id="loadSampleBtn" class="mini-btn" type="button">示例</button>
+            <span id="wordCount">0 字</span>
+            <button id="clearBtn" class="mini-btn" type="button">清空</button>
+            <button id="copyHtmlBtn" class="mini-btn" type="button">复制 HTML</button>
           </div>
         </div>
 
-        <label class="field-label" for="mdInput">正文内容</label>
-        <textarea id="mdInput" spellcheck="false" placeholder="# 在这里开始写作\n\n## 小节标题\n\n正文...\n\n![配图](https://example.com/image.jpg)\n"></textarea>
+        <div class="editor-canvas">
+          <textarea id="mdInput" spellcheck="false" placeholder="# 在这里开始写作\n\n## 小节标题\n\n正文...\n\n![配图](https://example.com/image.jpg)\n"></textarea>
+          <div class="editor-bottom-note">支持飞书、Notion、Word 富文本直接粘贴转 Markdown，也支持导入 `.md` 文件和图片插入。</div>
+        </div>
 
-        <p class="field-hint">支持飞书、Notion、Word 富文本直接粘贴转 Markdown；也支持导入 `.md` 文件和图片插入。</p>
         <input id="mdUploadInput" type="file" accept=".md,.markdown,.txt,text/markdown,text/plain" multiple hidden>
         <input id="imageUploadInput" type="file" accept="image/*" multiple hidden>
-
-        <div class="panel-foot editor-foot">
-          <button id="copyHtmlBtn" class="btn btn-outline" type="button">复制备用 HTML</button>
-        </div>
       </section>
 
-      <section id="previewSection" class="panel preview-panel" data-nav-section>
-        <div class="panel-head preview-panel-head">
-          <div class="panel-heading">
-            <h2>手机预览</h2>
-            <span class="panel-sub">模拟微信阅读页的视觉和滚动效果。</span>
-          </div>
-          <div class="panel-actions preview-actions">
-            <span class="preview-mode-badge">微信阅读视图</span>
+      <section id="previewSection" class="panel preview-panel preview-panel-minimal" data-nav-section>
+        <div class="preview-topbar">
+          <div class="preview-heading-lite">
+            <strong>手机预览</strong>
             <span id="activeThemeName">-</span>
+          </div>
+          <div class="preview-actions">
+            <span class="preview-mode-badge">微信阅读视图</span>
             <button id="copyRichBtn" class="btn btn-dark" type="button">复制到公众号</button>
           </div>
         </div>
@@ -5558,51 +5298,80 @@
 
       function renderThemeCards() {
         elements.themeList.innerHTML = "";
+        const isSidebarList = elements.themeList.classList.contains("theme-list-sidebar");
         themes.forEach(function (theme) {
           const card = document.createElement("button");
           card.type = "button";
           card.className = "theme-card";
           card.dataset.themeId = theme.id;
           card.dataset.layout = theme.layout || "editorial";
-          card.innerHTML =
-            '<div class="theme-preview" style="--c1:' +
-            theme.swatch[0] +
-            ";--c2:" +
-            theme.swatch[1] +
-            ";--c3:" +
-            theme.swatch[2] +
-            ';" data-layout="' +
-            escapeHtml(theme.layout || "editorial") +
-            '">' +
-            '<span class="theme-layout-badge">' +
-            escapeHtml(LAYOUT_LABELS[theme.layout] || theme.layout || "Editorial") +
-            "</span>" +
-            '<div class="theme-preview-copy">' +
-            "<strong>" +
-            escapeHtml(theme.name) +
-            "</strong>" +
-            "<span>" +
-            escapeHtml(theme.desc) +
-            "</span>" +
-            "</div>" +
-            "</div>" +
-            '<div class="theme-card-meta">' +
-            '<div class="theme-card-meta-text">' +
-            "<strong>" +
-            escapeHtml(LAYOUT_LABELS[theme.layout] || theme.layout || "Editorial") +
-            "</strong>" +
-            "<span>题 " +
-            escapeHtml(theme.headingLabel) +
-            " · 文 " +
-            escapeHtml(theme.bodyLabel) +
-            "</span>" +
-            "</div>" +
-            '<span class="theme-swatches" aria-hidden="true">' +
-            '<i style="--dot:' + theme.swatch[0] + ';"></i>' +
-            '<i style="--dot:' + theme.swatch[1] + ';"></i>' +
-            '<i style="--dot:' + theme.swatch[2] + ';"></i>' +
-            "</span>" +
-            "</div>";
+          if (isSidebarList) {
+            card.innerHTML =
+              '<div class="theme-card-strip" style="--c1:' +
+              theme.swatch[0] +
+              ";--c2:" +
+              theme.swatch[1] +
+              ";--c3:" +
+              theme.swatch[2] +
+              ';">' +
+              '<span class="theme-card-kicker">' +
+              escapeHtml(LAYOUT_LABELS[theme.layout] || theme.layout || "Editorial") +
+              "</span>" +
+              '<span class="theme-swatches" aria-hidden="true">' +
+              '<i style="--dot:' + theme.swatch[0] + ';"></i>' +
+              '<i style="--dot:' + theme.swatch[1] + ';"></i>' +
+              '<i style="--dot:' + theme.swatch[2] + ';"></i>' +
+              "</span>" +
+              "</div>" +
+              '<div class="theme-card-body">' +
+              "<strong>" +
+              escapeHtml(theme.name) +
+              "</strong>" +
+              "<span>" +
+              escapeHtml(theme.desc) +
+              "</span>" +
+              "</div>";
+          } else {
+            card.innerHTML =
+              '<div class="theme-preview" style="--c1:' +
+              theme.swatch[0] +
+              ";--c2:" +
+              theme.swatch[1] +
+              ";--c3:" +
+              theme.swatch[2] +
+              ';" data-layout="' +
+              escapeHtml(theme.layout || "editorial") +
+              '">' +
+              '<span class="theme-layout-badge">' +
+              escapeHtml(LAYOUT_LABELS[theme.layout] || theme.layout || "Editorial") +
+              "</span>" +
+              '<div class="theme-preview-copy">' +
+              "<strong>" +
+              escapeHtml(theme.name) +
+              "</strong>" +
+              "<span>" +
+              escapeHtml(theme.desc) +
+              "</span>" +
+              "</div>" +
+              "</div>" +
+              '<div class="theme-card-meta">' +
+              '<div class="theme-card-meta-text">' +
+              "<strong>" +
+              escapeHtml(LAYOUT_LABELS[theme.layout] || theme.layout || "Editorial") +
+              "</strong>" +
+              "<span>题 " +
+              escapeHtml(theme.headingLabel) +
+              " · 文 " +
+              escapeHtml(theme.bodyLabel) +
+              "</span>" +
+              "</div>" +
+              '<span class="theme-swatches" aria-hidden="true">' +
+              '<i style="--dot:' + theme.swatch[0] + ';"></i>' +
+              '<i style="--dot:' + theme.swatch[1] + ';"></i>' +
+              '<i style="--dot:' + theme.swatch[2] + ';"></i>' +
+              "</span>" +
+              "</div>";
+          }
           card.addEventListener("click", function () {
             setTheme(theme.id, true);
           });
