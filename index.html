@@ -2005,6 +2005,583 @@
       box-shadow: 0 18px 30px rgba(18, 53, 255, 0.1);
     }
 
+    /* ═══════════════════════════════════════════════════════
+       THEME ENHANCEMENT — h3 / list markers / hr / strong / blockquote
+       ═══════════════════════════════════════════════════════ */
+
+    /* ─── 1. amber-report · 琥珀晨报 ─── */
+    .article[data-theme-id="amber-report"] .article-body h3 {
+      padding-left: 10px;
+      border-left: 2px solid var(--accent);
+      font-size: 17px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--h2-color);
+    }
+    .article[data-theme-id="amber-report"] .article-body ul li::marker,
+    .article[data-theme-id="amber-report"] .article-body ol li::marker {
+      color: var(--accent);
+      font-size: 1.1em;
+    }
+    .article[data-theme-id="amber-report"] .article-body hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), color-mix(in srgb, var(--accent) 42%, var(--border) 58%), transparent);
+      margin: 28px 0;
+    }
+    .article[data-theme-id="amber-report"] .article-body strong,
+    .article[data-theme-id="amber-report"] .article-body b {
+      color: color-mix(in srgb, var(--accent) 82%, #2b1409 18%);
+    }
+    .article[data-theme-id="amber-report"] .article-body blockquote {
+      padding: 14px 16px;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      background: color-mix(in srgb, var(--quote-bg) 88%, var(--accent-soft) 12%);
+      font-style: italic;
+    }
+
+    /* ─── 2. pine-note · 松影手账 ─── */
+    .article[data-theme-id="pine-note"] .article-body h3 {
+      position: relative;
+      padding-left: 18px;
+      color: var(--h2-color);
+      font-size: 17px;
+    }
+    .article[data-theme-id="pine-note"] .article-body h3::before {
+      content: "▷";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.8em;
+      top: 0.22em;
+    }
+    .article[data-theme-id="pine-note"] .article-body ul {
+      list-style-type: "◉ ";
+    }
+    .article[data-theme-id="pine-note"] .article-body ul li::marker {
+      color: var(--accent);
+    }
+    .article[data-theme-id="pine-note"] .article-body ol li::marker {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .article[data-theme-id="pine-note"] .article-body hr {
+      border: 0;
+      border-top: 1.5px dashed color-mix(in srgb, var(--accent) 38%, var(--border) 62%);
+      margin: 24px 0;
+    }
+    .article[data-theme-id="pine-note"] .article-body strong,
+    .article[data-theme-id="pine-note"] .article-body b {
+      color: color-mix(in srgb, var(--accent) 78%, #0e1e14 22%);
+      background: color-mix(in srgb, var(--accent-soft) 58%, transparent 42%);
+      padding: 0 0.18em;
+      border-radius: 3px;
+    }
+
+    /* ─── 3. sea-column · 海风专栏 ─── */
+    .article[data-theme-id="sea-column"] .article-body h3 {
+      text-align: center;
+      padding-bottom: 6px;
+      border-bottom: 1px dotted color-mix(in srgb, var(--accent) 44%, var(--border) 56%);
+      font-size: 17px;
+      letter-spacing: 0.12em;
+      color: var(--h2-color);
+    }
+    .article[data-theme-id="sea-column"] .article-body ul li::marker,
+    .article[data-theme-id="sea-column"] .article-body ol li::marker {
+      color: var(--accent);
+    }
+    .article[data-theme-id="sea-column"] .article-body hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 15%, var(--border) 15%, var(--border) 42%, transparent 42%, transparent 58%, var(--border) 58%, var(--border) 85%, transparent 85%);
+      margin: 28px auto;
+    }
+    .article[data-theme-id="sea-column"] .article-body strong,
+    .article[data-theme-id="sea-column"] .article-body b {
+      color: var(--accent);
+    }
+    .article[data-theme-id="sea-column"] .article-body blockquote {
+      border-left: 0;
+      border-top: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border) 72%);
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border) 72%);
+      border-radius: 0;
+      background: none;
+      padding: 14px 0;
+      text-align: center;
+    }
+
+    /* ─── 4. newspaper · 复古报刊 ─── */
+    .article[data-theme-id="newspaper"] .article-body h3 {
+      font-size: 16px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding-bottom: 4px;
+      border-bottom: 2px double var(--border);
+      color: var(--h2-color);
+    }
+    .article[data-theme-id="newspaper"] .article-body ul {
+      list-style-type: "— ";
+    }
+    .article[data-theme-id="newspaper"] .article-body ul li::marker,
+    .article[data-theme-id="newspaper"] .article-body ol li::marker {
+      color: var(--text);
+      font-weight: normal;
+    }
+    .article[data-theme-id="newspaper"] .article-body hr {
+      border: 0;
+      border-top: 3px double var(--border);
+      margin: 24px 0;
+    }
+    .article[data-theme-id="newspaper"] .article-body strong,
+    .article[data-theme-id="newspaper"] .article-body b {
+      color: var(--title-color);
+      font-weight: 760;
+    }
+    .article[data-theme-id="newspaper"] .article-body blockquote {
+      background: color-mix(in srgb, var(--quote-bg) 74%, transparent 26%);
+      font-style: italic;
+    }
+
+    /* ─── 5. milk-tea · 奶油笔记 ─── */
+    .article[data-theme-id="milk-tea"] .article-body h3 {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent-soft) 78%, #fff 22%);
+      color: var(--h2-color);
+      font-size: 16px;
+    }
+    .article[data-theme-id="milk-tea"] .article-body ul {
+      list-style-type: "✦ ";
+    }
+    .article[data-theme-id="milk-tea"] .article-body ul li::marker {
+      color: var(--accent);
+    }
+    .article[data-theme-id="milk-tea"] .article-body ol li::marker {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .article[data-theme-id="milk-tea"] .article-body hr {
+      border: 0;
+      border-top: 2px dotted color-mix(in srgb, var(--accent) 44%, var(--border) 56%);
+      margin: 22px 0;
+    }
+    .article[data-theme-id="milk-tea"] .article-body strong,
+    .article[data-theme-id="milk-tea"] .article-body b {
+      color: var(--h2-color);
+      background: color-mix(in srgb, var(--accent-soft) 70%, transparent 30%);
+      padding: 0 0.2em;
+      border-radius: 4px;
+    }
+    .article[data-theme-id="milk-tea"] .article-body blockquote {
+      border-left: 3px solid var(--quote-border);
+      border-radius: 16px;
+      background: var(--quote-bg);
+      padding: 12px 16px;
+      box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 12%, transparent 88%);
+    }
+
+    /* ─── 6. graphite · 石墨专栏 ─── */
+    .article[data-theme-id="graphite"] .article-body h3 {
+      position: relative;
+      padding-left: 14px;
+      color: var(--h2-color);
+      font-size: 17px;
+      letter-spacing: 0.06em;
+    }
+    .article[data-theme-id="graphite"] .article-body h3::before {
+      content: "//";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: "Space Grotesk", monospace;
+      font-size: 0.76em;
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      top: 0.18em;
+    }
+    .article[data-theme-id="graphite"] .article-body ul {
+      list-style-type: "◆ ";
+    }
+    .article[data-theme-id="graphite"] .article-body ul li::marker {
+      color: var(--accent);
+      font-size: 0.72em;
+    }
+    .article[data-theme-id="graphite"] .article-body ol li::marker {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .article[data-theme-id="graphite"] .article-body hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 28px 0;
+    }
+    .article[data-theme-id="graphite"] .article-body strong,
+    .article[data-theme-id="graphite"] .article-body b {
+      color: var(--title-color);
+      font-weight: 700;
+      background: color-mix(in srgb, var(--accent-soft) 60%, transparent 40%);
+      padding: 0 0.15em;
+    }
+    .article[data-theme-id="graphite"] .article-body blockquote {
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      background: var(--quote-bg);
+      padding: 12px 16px;
+      font-size: 0.97em;
+    }
+
+    /* ─── 7. matcha-ink · 抹茶墨韵 ─── */
+    .article[data-theme-id="matcha-ink"] .article-body h3 {
+      text-align: center;
+      letter-spacing: 0.2em;
+      color: var(--h2-color);
+      font-size: 17px;
+      padding: 6px 0;
+      border-top: 1px solid color-mix(in srgb, var(--border) 72%, var(--accent) 28%);
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 72%, var(--accent) 28%);
+    }
+    .article[data-theme-id="matcha-ink"] .article-body ul {
+      list-style-type: "▪ ";
+    }
+    .article[data-theme-id="matcha-ink"] .article-body ul li::marker {
+      color: var(--accent);
+    }
+    .article[data-theme-id="matcha-ink"] .article-body ol li::marker {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .article[data-theme-id="matcha-ink"] .article-body hr {
+      border: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 30%, color-mix(in srgb, var(--accent) 40%, var(--border) 60%) 30%, color-mix(in srgb, var(--accent) 40%, var(--border) 60%) 70%, transparent 70%);
+      margin: 28px 0;
+    }
+    .article[data-theme-id="matcha-ink"] .article-body strong,
+    .article[data-theme-id="matcha-ink"] .article-body b {
+      color: color-mix(in srgb, var(--accent) 90%, #0a1a06 10%);
+    }
+    .article[data-theme-id="matcha-ink"] .article-body blockquote {
+      border-left: 0;
+      border-top: 1px solid var(--quote-border);
+      border-bottom: 1px solid var(--quote-border);
+      border-radius: 0;
+      background: none;
+      padding: 14px 8px;
+      text-align: center;
+      font-style: italic;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── 8. coral-jump · 珊瑚跃动 ─── */
+    .article[data-theme-id="coral-jump"] .article-body h3 {
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+      color: var(--h2-color);
+      font-size: 18px;
+    }
+    .article[data-theme-id="coral-jump"] .article-body ol li::marker {
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .article[data-theme-id="coral-jump"] .article-body hr {
+      border: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      border-radius: 999px;
+      margin: 26px 0;
+    }
+    .article[data-theme-id="coral-jump"] .article-body strong,
+    .article[data-theme-id="coral-jump"] .article-body b {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    /* ─── 9. ink-night · 墨夜杂志 ─── */
+    .article[data-theme-id="ink-night"] .article-body h3 {
+      color: color-mix(in srgb, var(--accent) 82%, #fff 18%);
+      font-size: 17px;
+      letter-spacing: 0.1em;
+      padding-left: 12px;
+      border-left: 2px solid color-mix(in srgb, var(--accent) 54%, transparent 46%);
+    }
+    .article[data-theme-id="ink-night"] .article-body ul li::marker,
+    .article[data-theme-id="ink-night"] .article-body ol li::marker {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .article[data-theme-id="ink-night"] .article-body hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 164, 92, 0.5), rgba(212, 164, 92, 0.5), transparent);
+      margin: 28px 0;
+    }
+    .article[data-theme-id="ink-night"] .article-body strong,
+    .article[data-theme-id="ink-night"] .article-body b {
+      color: #f0c275;
+      font-weight: 700;
+    }
+    .article[data-theme-id="ink-night"] .article-body blockquote {
+      border-left: 3px solid rgba(212, 164, 92, 0.6);
+      border-radius: 0 8px 8px 0;
+      background: rgba(212, 164, 92, 0.06);
+      padding: 12px 16px;
+      color: rgba(231, 236, 242, 0.88);
+    }
+
+    /* ─── 10. mint-tech · 薄荷科技 ─── */
+    .article[data-theme-id="mint-tech"] .article-body h3 {
+      position: relative;
+      padding-left: 16px;
+      color: var(--h2-color);
+      font-size: 17px;
+      letter-spacing: 0.04em;
+    }
+    .article[data-theme-id="mint-tech"] .article-body h3::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.3em;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background: var(--accent);
+    }
+    .article[data-theme-id="mint-tech"] .article-body ul {
+      list-style-type: "▸ ";
+    }
+    .article[data-theme-id="mint-tech"] .article-body ul li::marker {
+      color: var(--accent);
+    }
+    .article[data-theme-id="mint-tech"] .article-body ol li::marker {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .article[data-theme-id="mint-tech"] .article-body hr {
+      border: 0;
+      border-top: 2px solid var(--accent);
+      margin: 26px 0;
+      opacity: 0.3;
+    }
+    .article[data-theme-id="mint-tech"] .article-body strong,
+    .article[data-theme-id="mint-tech"] .article-body b {
+      color: var(--h2-color);
+      background: color-mix(in srgb, var(--accent-soft) 72%, transparent 28%);
+      padding: 0 0.16em;
+      border-radius: 3px;
+    }
+    .article[data-theme-id="mint-tech"] .article-body blockquote {
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      background: var(--quote-bg);
+      padding: 12px 16px;
+    }
+
+    /* ─── 11. wine-red · 酒红评论 ─── */
+    .article[data-theme-id="wine-red"] .article-body h3 {
+      display: table;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 5px;
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border) 60%);
+      font-size: 17px;
+      letter-spacing: 0.14em;
+      color: var(--h2-color);
+    }
+    .article[data-theme-id="wine-red"] .article-body ul {
+      list-style-type: "– ";
+    }
+    .article[data-theme-id="wine-red"] .article-body ul li::marker,
+    .article[data-theme-id="wine-red"] .article-body ol li::marker {
+      color: var(--accent);
+    }
+    .article[data-theme-id="wine-red"] .article-body hr {
+      border: 0;
+      border-top: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border) 74%);
+      margin: 30px 0;
+    }
+    .article[data-theme-id="wine-red"] .article-body strong,
+    .article[data-theme-id="wine-red"] .article-body b {
+      color: var(--accent);
+    }
+    .article[data-theme-id="wine-red"] .article-body blockquote {
+      border-left: 3px solid var(--accent);
+      border-radius: 0;
+      background: var(--quote-bg);
+      padding: 12px 16px;
+      font-style: italic;
+    }
+
+    /* ─── 12. minimal-silver · 银灰极简 ─── */
+    .article[data-theme-id="minimal-silver"] .article-body h3 {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .article[data-theme-id="minimal-silver"] .article-body ul li::marker,
+    .article[data-theme-id="minimal-silver"] .article-body ol li::marker {
+      color: var(--muted);
+      font-weight: normal;
+    }
+    .article[data-theme-id="minimal-silver"] .article-body hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+    .article[data-theme-id="minimal-silver"] .article-body strong,
+    .article[data-theme-id="minimal-silver"] .article-body b {
+      color: var(--title-color);
+      font-weight: 700;
+    }
+
+    /* ─── 13. palace-red · 宫墙绛红 ─── */
+    .article[data-theme-id="palace-red"] .article-body h3 {
+      text-align: center;
+      letter-spacing: 0.24em;
+      color: var(--h2-color);
+      font-size: 17px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border) 70%);
+    }
+    .article[data-theme-id="palace-red"] .article-body ul {
+      list-style-type: "◈ ";
+    }
+    .article[data-theme-id="palace-red"] .article-body ul li::marker {
+      color: var(--accent);
+      font-size: 0.9em;
+    }
+    .article[data-theme-id="palace-red"] .article-body ol li::marker {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .article[data-theme-id="palace-red"] .article-body hr {
+      border: 0;
+      border-top: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border) 78%);
+      margin: 28px 0;
+    }
+    .article[data-theme-id="palace-red"] .article-body strong,
+    .article[data-theme-id="palace-red"] .article-body b {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .article[data-theme-id="palace-red"] .article-body blockquote {
+      border-left: 0;
+      border-top: 1px solid color-mix(in srgb, var(--accent) 38%, var(--border) 62%);
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 38%, var(--border) 62%);
+      border-radius: 0;
+      background: var(--quote-bg);
+      padding: 14px 16px;
+      text-align: center;
+      font-style: italic;
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── 14. ink-wash · 泼墨旧闻 ─── */
+    .article[data-theme-id="ink-wash"] .article-body h3 {
+      color: var(--h2-color);
+      font-size: 17px;
+      letter-spacing: 0.12em;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed var(--border);
+    }
+    .article[data-theme-id="ink-wash"] .article-body ul {
+      list-style-type: "◉ ";
+    }
+    .article[data-theme-id="ink-wash"] .article-body ul li::marker {
+      color: var(--muted);
+      font-size: 0.8em;
+    }
+    .article[data-theme-id="ink-wash"] .article-body ol li::marker {
+      color: var(--muted);
+    }
+    .article[data-theme-id="ink-wash"] .article-body hr {
+      border: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--muted), color-mix(in srgb, var(--muted) 40%, transparent 60%));
+      margin: 26px 0;
+    }
+    .article[data-theme-id="ink-wash"] .article-body strong,
+    .article[data-theme-id="ink-wash"] .article-body b {
+      color: var(--title-color);
+      font-weight: 740;
+      background: color-mix(in srgb, var(--accent-soft) 50%, transparent 50%);
+      padding: 0 0.12em;
+    }
+    .article[data-theme-id="ink-wash"] .article-body blockquote {
+      border-left-width: 6px;
+      border-radius: 0;
+      background: rgba(65, 66, 68, 0.05);
+    }
+
+    /* ─── 15. atelier-blue · Royal Atelier ─── */
+    .article[data-theme-id="atelier-blue"] .article-body h3 {
+      color: var(--h2-color);
+      font-size: 17px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #d6b27d;
+      letter-spacing: 0.1em;
+    }
+    .article[data-theme-id="atelier-blue"] .article-body ul {
+      list-style-type: "◆ ";
+    }
+    .article[data-theme-id="atelier-blue"] .article-body ul li::marker {
+      color: #d6b27d;
+      font-size: 0.72em;
+    }
+    .article[data-theme-id="atelier-blue"] .article-body ol li::marker {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .article[data-theme-id="atelier-blue"] .article-body hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #d6b27d, transparent);
+      margin: 30px 0;
+    }
+    .article[data-theme-id="atelier-blue"] .article-body strong,
+    .article[data-theme-id="atelier-blue"] .article-body b {
+      color: var(--title-color);
+      font-weight: 720;
+      border-bottom: 1.5px solid #d6b27d;
+    }
+
+    /* ─── 16. klein-blue · 克莱因蓝 ─── */
+    .article[data-theme-id="klein-blue"] .article-body h3 {
+      color: #10214d;
+      font-size: 17px;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      padding-bottom: 5px;
+      border-bottom: 2px solid rgba(18, 53, 255, 0.28);
+    }
+    .article[data-theme-id="klein-blue"] .article-body ul {
+      list-style-type: "▶ ";
+    }
+    .article[data-theme-id="klein-blue"] .article-body ul li::marker {
+      color: #1235ff;
+      font-size: 0.72em;
+    }
+    .article[data-theme-id="klein-blue"] .article-body ol li::marker {
+      color: #1235ff;
+      font-weight: 700;
+    }
+    .article[data-theme-id="klein-blue"] .article-body hr {
+      border: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #1235ff, rgba(18, 53, 255, 0.18), transparent);
+      border-radius: 999px;
+      margin: 28px 0;
+    }
+    .article[data-theme-id="klein-blue"] .article-body strong,
+    .article[data-theme-id="klein-blue"] .article-body b {
+      color: #1235ff;
+      font-weight: 700;
+    }
+
     .toast {
       position: fixed;
       left: 50%;
