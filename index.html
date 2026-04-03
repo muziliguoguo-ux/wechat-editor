@@ -7361,7 +7361,6 @@
         const letterSpace = elements.letterSpaceRange.value;
         const paragraphGap = elements.spacingRange.value;
         const headingGap = elements.headingGapRange.value;
-        const contentInset = elements.contentInsetRange.value;
         const titleWeight = previewStyles.getPropertyValue("--title-weight").trim() || "560";
         const headingWeight = previewStyles.getPropertyValue("--heading-weight").trim() || "580";
         const bodyWeight = previewStyles.getPropertyValue("--body-weight").trim() || "380";
@@ -7730,12 +7729,8 @@
           node.removeAttribute("data-layout");
         });
 
-        const wrapper = document.createElement("section");
-        let wrapperStyle = "margin:0;padding:28px 22px 34px;background-color:" + safePaper + ";";
         let articleStyle =
-          "display:block;margin:0;padding:30px " +
-          contentInset +
-          "px 36px;background-color:transparent;" +
+          "display:block;margin:0;padding:0;background:transparent;" +
           "color:" +
           safeText +
           ";font-family:" +
@@ -7750,57 +7745,7 @@
           bodyWeight +
           ";word-break:break-word;overflow-wrap:break-word;border:0;border-radius:0;box-shadow:none;";
 
-        if (layout === "minimal") {
-          wrapperStyle = "margin:0;padding:14px 0 18px;background-color:#ffffff;";
-          articleStyle =
-            "display:block;margin:0;padding:8px 4px;background-color:transparent;color:" +
-            safeText +
-            ";font-family:" +
-            bodyFont +
-            ";font-size:" +
-            bodySize +
-            "px;line-height:" +
-            lineHeight +
-            ";letter-spacing:" +
-            letterSpace +
-            "px;font-weight:" +
-            bodyWeight +
-            ";word-break:break-word;overflow-wrap:break-word;border:0;border-radius:0;box-shadow:none;";
-        } else if (layout === "dossier") {
-          wrapperStyle = "margin:0;padding:28px 18px 34px;background-color:" + safePaper + ";";
-          articleStyle =
-            "display:block;margin:0;padding:30px " +
-            contentInset +
-            "px 36px;background-color:transparent;color:" +
-            safeText +
-            ";font-family:" +
-            bodyFont +
-            ";font-size:" +
-            bodySize +
-            "px;line-height:" +
-            lineHeight +
-            ";letter-spacing:" +
-            letterSpace +
-            "px;font-weight:" +
-            bodyWeight +
-            ";word-break:break-word;overflow-wrap:break-word;border:0;border-radius:0;box-shadow:none;";
-        }
-
-        if (themeId === "sea-column") wrapperStyle = "margin:0;padding:30px 18px 38px;background-color:" + safePaper + ";";
-        if (themeId === "milk-tea") wrapperStyle = "margin:0;padding:28px 20px 36px;background-color:" + safePaper + ";";
-        if (themeId === "ink-night") wrapperStyle = "margin:0;padding:28px 20px 34px;background-color:" + safePaper + ";";
-        if (themeId === "palace-red") wrapperStyle = "margin:0;padding:28px 20px 34px;background-color:" + safePaper + ";";
-        if (themeId === "klein-blue") wrapperStyle = "margin:0;padding:30px 20px 38px;background-color:#ffffff;";
-
-        if (themeId === "klein-blue") {
-          articleStyle += "padding:32px " + contentInset + "px 38px;background:linear-gradient(180deg, rgba(18,53,255,0.05), rgba(255,255,255,0) 92px), #ffffff;";
-        }
-
-        if (themeId === "newspaper") articleStyle += "padding-left:10px;padding-right:10px;";
-        if (themeId === "graphite") articleStyle += "padding-top:32px;";
-        if (themeId === "mint-tech") articleStyle += "padding-right:" + Math.max(20, Number(contentInset)) + "px;";
-
-        wrapper.setAttribute("style", wrapperStyle);
+        if (themeId === "newspaper") articleStyle += "padding-left:0;padding-right:0;";
         clone.setAttribute("style", articleStyle);
         clone.removeAttribute("class");
         clone.removeAttribute("id");
@@ -7809,8 +7754,7 @@
         clone.removeAttribute("data-flat-mode");
         clone.removeAttribute("data-marker-style");
         clone.removeAttribute("data-layout");
-        wrapper.appendChild(clone);
-        return wrapper.outerHTML;
+        return clone.outerHTML;
       }
 
       async function copyHtml() {
