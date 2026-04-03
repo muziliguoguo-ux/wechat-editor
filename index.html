@@ -737,6 +737,7 @@
       --paragraph-gap: 18;
       --heading-gap: 28;
       --content-width: 660;
+      --content-inset: 24;
       --title-weight: 560;
       --heading-weight: 580;
       --body-weight: 380;
@@ -797,7 +798,7 @@
       margin: 0 auto;
       border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 30px 24px 38px;
+      padding: 30px calc(var(--content-inset) * 1px) 38px;
       background: var(--paper);
       color: var(--text);
       font-family: var(--body-font);
@@ -3421,8 +3422,7 @@
       justify-content: flex-end;
     }
 
-    .panel-actions > span,
-    #activeThemeName {
+    .panel-actions > span {
       color: #5f6d84;
       font-size: 13px;
       line-height: 1.6;
@@ -3919,8 +3919,7 @@
         justify-content: flex-start;
       }
 
-      .panel-actions > span,
-      #activeThemeName {
+      .panel-actions > span {
         max-width: none;
         text-align: left;
       }
@@ -4274,8 +4273,7 @@
       gap: 8px;
     }
 
-    .panel-actions > span,
-    #activeThemeName {
+    .panel-actions > span {
       max-width: none;
       font-size: 12px;
       line-height: 1.5;
@@ -4837,8 +4835,7 @@
       justify-content: flex-end;
     }
 
-    .panel-actions > span,
-    #activeThemeName {
+    .panel-actions > span {
       color: #5f6d84;
       font-size: 13px;
       line-height: 1.6;
@@ -5372,8 +5369,7 @@
       align-items: center;
     }
 
-    .preview-panel-head .panel-sub,
-    #activeThemeName {
+    .preview-panel-head .panel-sub {
       display: none;
     }
 
@@ -5559,10 +5555,10 @@
             </div>
           </div>
           <div class="control-item">
-            <label for="widthRange">内容宽度</label>
+            <label for="contentInsetRange">正文内边距</label>
             <div class="control-main">
-              <input id="widthRange" type="range" min="520" max="760" value="660" step="10">
-              <output id="widthValue">660px</output>
+              <input id="contentInsetRange" type="range" min="16" max="36" value="24" step="1">
+              <output id="contentInsetValue">24px</output>
             </div>
           </div>
           <select id="markerStyleSelect" hidden aria-hidden="true" tabindex="-1">
@@ -5726,32 +5722,6 @@
 > 结尾可以只做一件事：告诉读者“下一步做什么”。
 
 如果你只改一个动作，请先改标题和导语。它们决定了读者会不会继续往下读。`;
-
-      const SKELETON = `# 文章标题
-
-> 一句话导语：这篇文章能帮读者解决什么问题。
-
-## 一、现状和痛点
-
-## 二、核心方法
-
-## 三、落地步骤
-
-## 四、注意事项
-
-## 五、总结与行动建议`;
-
-      const AI_MARKDOWN_PROMPT = `你是公众号写作助手。请根据我提供的主题，直接输出适合公众号排版器使用的 Markdown，要求：
-- 只保留一个一级标题
-- 使用二级标题划分模块
-- 每个模块控制在 2 到 3 段短段落
-- 重要信息前置，避免长段堆叠
-- 需要列点时使用 Markdown 列表
-- 需要提示块时使用 :::tip 提示标题 ... :::
-- 如需插图占位，使用 ![配图说明](图片链接)
-- 不要输出解释、前言、代码围栏或额外备注
-
-现在开始只输出 Markdown 正文。`;
 
       const SNIPPETS = {
         h2: "\n## 小节标题\n\n",
@@ -6301,12 +6271,8 @@
         topbar: document.getElementById("topbar"),
         menuToggleBtn: document.getElementById("menuToggleBtn"),
         mobileDrawer: document.getElementById("mobileDrawer"),
-        ambientToggleBtn: document.getElementById("ambientToggleBtn"),
-        copyPromptBtn: document.getElementById("copyPromptBtn"),
-        promptBox: document.getElementById("promptBox"),
         themeList: document.getElementById("themeList"),
         themeSummary: document.getElementById("themeSummary"),
-        activeThemeName: document.getElementById("activeThemeName"),
         mdInput: document.getElementById("mdInput"),
         wordCount: document.getElementById("wordCount"),
         previewStage: document.getElementById("previewStage"),
@@ -6316,7 +6282,6 @@
         loadSampleBtn: document.getElementById("loadSampleBtn"),
         clearBtn: document.getElementById("clearBtn"),
         randomThemeBtn: document.getElementById("randomThemeBtn"),
-        insertSkeletonBtn: document.getElementById("insertSkeletonBtn"),
         uploadMdBtn: document.getElementById("uploadMdBtn"),
         mdUploadInput: document.getElementById("mdUploadInput"),
         insertImageUrlBtn: document.getElementById("insertImageUrlBtn"),
@@ -6329,7 +6294,7 @@
         lineHeightRange: document.getElementById("lineHeightRange"),
         spacingRange: document.getElementById("spacingRange"),
         headingGapRange: document.getElementById("headingGapRange"),
-        widthRange: document.getElementById("widthRange"),
+        contentInsetRange: document.getElementById("contentInsetRange"),
         markerStyleSelect: document.getElementById("markerStyleSelect"),
         autoEmphasisToggle: document.getElementById("autoEmphasisToggle"),
         flatModeToggle: document.getElementById("flatModeToggle"),
@@ -6338,7 +6303,7 @@
         lineHeightValue: document.getElementById("lineHeightValue"),
         spacingValue: document.getElementById("spacingValue"),
         headingGapValue: document.getElementById("headingGapValue"),
-        widthValue: document.getElementById("widthValue"),
+        contentInsetValue: document.getElementById("contentInsetValue"),
         floatCopyBtn: document.getElementById("floatCopyBtn"),
         toast: document.getElementById("toast")
       };
@@ -7063,14 +7028,14 @@
         elements.lineHeightValue.textContent = Number(elements.lineHeightRange.value).toFixed(2);
         elements.spacingValue.textContent = elements.spacingRange.value + "px";
         elements.headingGapValue.textContent = elements.headingGapRange.value + "px";
-        elements.widthValue.textContent = elements.widthRange.value + "px";
+        elements.contentInsetValue.textContent = elements.contentInsetRange.value + "px";
 
         elements.previewStage.style.setProperty("--body-size", elements.fontSizeRange.value);
         elements.previewStage.style.setProperty("--body-letter-spacing", elements.letterSpaceRange.value);
         elements.previewStage.style.setProperty("--line-height", elements.lineHeightRange.value);
         elements.previewStage.style.setProperty("--paragraph-gap", elements.spacingRange.value);
         elements.previewStage.style.setProperty("--heading-gap", elements.headingGapRange.value);
-        elements.previewStage.style.setProperty("--content-width", elements.widthRange.value);
+        elements.previewStage.style.setProperty("--content-inset", elements.contentInsetRange.value);
         if (elements.markerStyleSelect) {
           elements.markerStyleSelect.value = "none";
         }
@@ -7199,10 +7164,6 @@
         elements.previewStage.dataset.themeId = activeTheme.id;
         elements.phoneShell.dataset.layout = activeTheme.layout || "editorial";
         elements.phoneShell.dataset.themeId = activeTheme.id;
-        if (elements.activeThemeName) {
-          elements.activeThemeName.textContent = activeTheme.name + " · " + activeTheme.desc;
-        }
-
         const cards = elements.themeList.querySelectorAll(".theme-card");
         cards.forEach(function (card) {
           card.classList.toggle("active", card.dataset.themeId === activeTheme.id);
@@ -7236,16 +7197,6 @@
         textarea.focus();
         textarea.setSelectionRange(cursor, cursor);
 
-        updatePreview();
-      }
-
-      function insertSkeleton() {
-        if (!elements.mdInput.value.trim()) {
-          elements.mdInput.value = SKELETON;
-        } else {
-          elements.mdInput.value += "\n\n" + SKELETON;
-        }
-        elements.mdInput.focus();
         updatePreview();
       }
 
@@ -7410,6 +7361,7 @@
         const letterSpace = elements.letterSpaceRange.value;
         const paragraphGap = elements.spacingRange.value;
         const headingGap = elements.headingGapRange.value;
+        const contentInset = elements.contentInsetRange.value;
         const titleWeight = previewStyles.getPropertyValue("--title-weight").trim() || "560";
         const headingWeight = previewStyles.getPropertyValue("--heading-weight").trim() || "580";
         const bodyWeight = previewStyles.getPropertyValue("--body-weight").trim() || "380";
@@ -7483,7 +7435,7 @@
               style = "margin:0 0 12px;padding:0 0 16px;border-bottom:1px solid " + border + ";";
             }
             if (themeId === "milk-tea" || themeId === "atelier-blue") {
-              style += "padding:18px 18px 16px;border:1px solid " + border + ";border-radius:22px;background-color:" + subtleBg + ";";
+              style += "padding:0 0 16px;border:0;border-bottom:1px solid " + border + ";background-color:transparent;";
             }
             if (themeId === "palace-red" || themeId === "matcha-ink") {
               style += "text-align:center;";
@@ -7781,7 +7733,9 @@
         const wrapper = document.createElement("section");
         let wrapperStyle = "margin:0;padding:28px 22px 34px;background-color:" + safePaper + ";";
         let articleStyle =
-          "display:block;margin:0;padding:30px 24px 36px;background-color:transparent;" +
+          "display:block;margin:0;padding:30px " +
+          contentInset +
+          "px 36px;background-color:transparent;" +
           "color:" +
           safeText +
           ";font-family:" +
@@ -7815,7 +7769,9 @@
         } else if (layout === "dossier") {
           wrapperStyle = "margin:0;padding:28px 18px 34px;background-color:" + safePaper + ";";
           articleStyle =
-            "display:block;margin:0;padding:30px 24px 36px;background-color:transparent;color:" +
+            "display:block;margin:0;padding:30px " +
+            contentInset +
+            "px 36px;background-color:transparent;color:" +
             safeText +
             ";font-family:" +
             bodyFont +
@@ -7827,11 +7783,7 @@
             letterSpace +
             "px;font-weight:" +
             bodyWeight +
-            ";word-break:break-word;overflow-wrap:break-word;border-top:1px solid " +
-            border +
-            ";border-bottom:1px solid " +
-            border +
-            ";border-left:0;border-right:0;border-radius:0;box-shadow:none;";
+            ";word-break:break-word;overflow-wrap:break-word;border:0;border-radius:0;box-shadow:none;";
         }
 
         if (themeId === "sea-column") wrapperStyle = "margin:0;padding:30px 18px 38px;background-color:" + safePaper + ";";
@@ -7840,16 +7792,13 @@
         if (themeId === "palace-red") wrapperStyle = "margin:0;padding:28px 20px 34px;background-color:" + safePaper + ";";
         if (themeId === "klein-blue") wrapperStyle = "margin:0;padding:30px 20px 38px;background-color:#ffffff;";
 
-        if (themeId === "palace-red") articleStyle += "box-shadow:inset 0 0 0 2px rgba(175,48,40,0.12), inset 0 0 0 12px " + subtleBg + ";";
-        if (themeId === "klein-blue") articleStyle += "padding:32px 24px 38px;border:1px solid rgba(18,53,255,0.12);background:linear-gradient(180deg, rgba(18,53,255,0.05), rgba(255,255,255,0) 92px), #ffffff;box-shadow:0 24px 48px rgba(18,53,255,0.08);";
-
-        if (layout === "palace") {
-          articleStyle += "box-shadow:inset 0 0 0 6px " + subtleBg + ";";
+        if (themeId === "klein-blue") {
+          articleStyle += "padding:32px " + contentInset + "px 38px;background:linear-gradient(180deg, rgba(18,53,255,0.05), rgba(255,255,255,0) 92px), #ffffff;";
         }
 
         if (themeId === "newspaper") articleStyle += "padding-left:10px;padding-right:10px;";
         if (themeId === "graphite") articleStyle += "padding-top:32px;";
-        if (themeId === "mint-tech") articleStyle += "padding-right:20px;";
+        if (themeId === "mint-tech") articleStyle += "padding-right:" + Math.max(20, Number(contentInset)) + "px;";
 
         wrapper.setAttribute("style", wrapperStyle);
         clone.setAttribute("style", articleStyle);
@@ -7873,15 +7822,6 @@
           showToast("已复制 HTML（内联样式）");
         } catch (error) {
           showToast("复制 HTML 失败，请检查浏览器权限", true);
-        }
-      }
-
-      async function copyPrompt() {
-        try {
-          await navigator.clipboard.writeText(AI_MARKDOWN_PROMPT);
-          showToast("已复制 AI Markdown 提示词");
-        } catch (error) {
-          showToast("复制提示词失败，请检查浏览器权限", true);
         }
       }
 
@@ -7957,7 +7897,7 @@
             lineHeight: elements.lineHeightRange.value,
             spacing: elements.spacingRange.value,
             headingGap: elements.headingGapRange.value,
-            width: elements.widthRange.value,
+            contentInset: elements.contentInsetRange.value,
             markerStyle: elements.markerStyleSelect.value,
             autoEmphasis: elements.autoEmphasisToggle.checked,
             flatMode: elements.flatModeToggle.checked
@@ -7987,7 +7927,9 @@
               if (saved.controls.lineHeight) elements.lineHeightRange.value = saved.controls.lineHeight;
               if (saved.controls.spacing) elements.spacingRange.value = saved.controls.spacing;
               if (saved.controls.headingGap) elements.headingGapRange.value = saved.controls.headingGap;
-              if (saved.controls.width) elements.widthRange.value = saved.controls.width;
+              if (saved.controls.contentInset) {
+                elements.contentInsetRange.value = saved.controls.contentInset;
+              }
               elements.autoEmphasisToggle.checked = Boolean(saved.controls.autoEmphasis);
               if (typeof saved.controls.flatMode === "boolean") {
                 elements.flatModeToggle.checked = isLegacyState ? false : saved.controls.flatMode;
@@ -8125,17 +8067,8 @@
         });
       }
 
-      function syncAmbientState() {
-        if (!elements.ambientToggleBtn) return;
-        const enabled = document.body.dataset.ambient !== "off";
-        elements.ambientToggleBtn.setAttribute("aria-pressed", String(enabled));
-      }
-
       function bindEvents() {
         elements.mdInput.addEventListener("input", updatePreview);
-        if (elements.copyPromptBtn) {
-          elements.copyPromptBtn.addEventListener("click", copyPrompt);
-        }
 
         [
           elements.fontSizeRange,
@@ -8143,7 +8076,7 @@
           elements.lineHeightRange,
           elements.spacingRange,
           elements.headingGapRange,
-          elements.widthRange
+          elements.contentInsetRange
         ].forEach(function (input) {
           input.addEventListener("input", function () {
             updateControlValues();
@@ -8173,12 +8106,6 @@
         });
 
         elements.randomThemeBtn.addEventListener("click", randomTheme);
-        if (elements.insertSkeletonBtn) {
-          elements.insertSkeletonBtn.addEventListener("click", function () {
-            insertSkeleton();
-            showToast("已插入文章骨架");
-          });
-        }
         elements.uploadMdBtn.addEventListener("click", function () {
           elements.mdUploadInput.click();
         });
@@ -8206,17 +8133,6 @@
         if (elements.menuToggleBtn) {
           elements.menuToggleBtn.addEventListener("click", function () {
             toggleMobileDrawer();
-          });
-        }
-
-        if (elements.ambientToggleBtn) {
-          elements.ambientToggleBtn.addEventListener("click", function () {
-            if (document.body.dataset.ambient === "off") {
-              delete document.body.dataset.ambient;
-            } else {
-              document.body.dataset.ambient = "off";
-            }
-            syncAmbientState();
           });
         }
 
@@ -8306,9 +8222,6 @@
         renderThemeCards();
         loadState();
         bindEvents();
-        if (elements.promptBox) {
-          elements.promptBox.textContent = AI_MARKDOWN_PROMPT;
-        }
 
         if (!elements.mdInput.value.trim()) {
           elements.mdInput.value = DEFAULT_MARKDOWN;
@@ -8318,7 +8231,6 @@
         setTheme(activeTheme.id, false);
         setTopbarState();
         syncNavState();
-        syncAmbientState();
         closeMobileDrawer();
         initRevealAnimations();
         initStatCounters();
