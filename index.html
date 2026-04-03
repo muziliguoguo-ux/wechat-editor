@@ -6346,6 +6346,7 @@
       let activeTheme = themes[0];
       let saveTimer = null;
       let toastTimer = null;
+      const imageStore = new Map(); // blobUrl → File（用于导出时转 data URL）
 
       function escapeHtml(input) {
         return String(input)
@@ -7301,9 +7302,9 @@
             continue;
           }
           try {
-            const dataUrl = await fileToDataUrl(file);
-            if (!dataUrl) continue;
-            insertTextAtCursor(buildImageSnippet(dataUrl, cleanFileName(file.name)));
+            const blobUrl = URL.createObjectURL(file);
+            imageStore.set(blobUrl, file);
+            insertTextAtCursor(buildImageSnippet(blobUrl, cleanFileName(file.name)));
             inserted += 1;
           } catch (error) {
             showToast("图片 " + file.name + " 插入失败", true);
@@ -7346,6 +7347,16 @@
         elements.mdInput.focus();
         updatePreview();
         showToast("已导入 " + chunks.length + " 个 Markdown 文件");
+      }
+
+      async function resolveBlobImgsInClone(clone) {
+        const imgs = Array.from(clone.querySelectorAll('img[src^="blob:"]'));
+        await Promise.all(imgs.map(async function(img) {
+          const file = imageStore.get(img.src);
+          if (file) {
+            img.src = await fileToDataUrl(file);
+          }
+        }));
       }
 
       function buildInlineStyledHtml(sourceNode) {
@@ -7854,7 +7865,9 @@
       }
 
       async function copyHtml() {
-        const html = buildInlineStyledHtml(elements.article);
+        const clone = elements.article.cloneNode(true);
+        await resolveBlobImgsInClone(clone);
+        const html = buildInlineStyledHtml(clone);
         try {
           await navigator.clipboard.writeText(html);
           showToast("已复制 HTML（内联样式）");
@@ -7873,8 +7886,19 @@
       }
 
       async function copyRichText() {
+        // 临时将 live article 中的 blob URL 替换为 data URL，供 buildWeChatSafeHtml 使用
+        const blobImgs = Array.from(elements.article.querySelectorAll('img[src^="blob:"]'));
+        const origSrcs = blobImgs.map(function(img) { return img.src; });
+        await Promise.all(blobImgs.map(async function(img) {
+          const file = imageStore.get(img.src);
+          if (file) img.src = await fileToDataUrl(file);
+        }));
+
         const html = buildWeChatSafeHtml();
         const plain = elements.article.innerText || "";
+
+        // 还原 blob URL，不污染编辑状态
+        blobImgs.forEach(function(img, i) { img.src = origSrcs[i]; });
 
         try {
           if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
